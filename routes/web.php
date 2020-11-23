@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,52 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => '/admin'],function(){
+    Route::get('/', function(){
+        return 'Admin';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Resepsionis Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => '/resepsionis'],function(){
+    Route::get('/', function(){
+        return 'Resepsionis';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Dokter Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => '/dokter'],function(){
+    Route::get('/', function(){
+        return 'dokter';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Apoteker Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => '/apoteker'],function(){
+    Route::get('/', function(){
+        return 'apoteker';
+    });
+});
+
+
 
 Auth::routes();
 
