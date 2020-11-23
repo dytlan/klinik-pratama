@@ -23,10 +23,12 @@ Route::get('/', function () {
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'],function(){
+Route::group(['prefix' => '/admin'],function(){
     Route::get('/', function(){
         return 'Admin';
     });
+
+    Route::resource('/user', 'Admin\UserController');
 });
 
 /*
