@@ -40,6 +40,8 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'],funct
     Route::get('/', function(){
         return 'Resepsionis';
     });
+
+    Route::resource('/pasien', 'Resepsionis\PatientController');
 });
 
 /*
@@ -65,5 +67,3 @@ Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'],function(){
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
