@@ -23,12 +23,12 @@ Route::get('/', function () {
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/admin'],function(){
-    Route::get('/', function(){
-        return 'Admin';
-    });
+Route::group(['prefix' => '/admin'], function () {
+    Route::get('/', function () {
+        return view('pages.admin.dashboard');
+    })->middleware('auth');
 
-    Route::resource('/user', 'Admin\UserController');
+    Route::resource('/user', 'Admin\UserController')->middleware('auth');
 });
 
 /*
@@ -36,8 +36,8 @@ Route::group(['prefix' => '/admin'],function(){
 | Resepsionis Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'],function(){
-    Route::get('/', function(){
+Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], function () {
+    Route::get('/', function () {
         return 'Resepsionis';
     });
 
@@ -49,8 +49,8 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'],funct
 | Dokter Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'],function(){
-    Route::get('/', function(){
+Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'], function () {
+    Route::get('/', function () {
         return 'dokter';
     });
 });
@@ -60,8 +60,8 @@ Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'],function(){
 | Apoteker Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'],function(){
-    Route::get('/', function(){
+Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'], function () {
+    Route::get('/', function () {
         return 'apoteker';
     });
 });

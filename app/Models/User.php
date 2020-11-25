@@ -37,11 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function photo(){
-        return $this->belongsTo('App\Models\Photo');
+    public function photo()
+    {
+        return $this->belongsTo('App\Models\Photo', 'media_id', 'id');
     }
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo('App\Models\Role');
     }
 }

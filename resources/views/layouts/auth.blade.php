@@ -13,18 +13,9 @@
 </head>
 
 <body>
-  <div class="loader"></div>
+   <div class="loader"></div>
   <div id="app">
-    <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
-      @include('includes.navbar')
-      @include('includes.sidebar')
-      <!-- Main Content -->
-      <div class="main-content">
-        @yield('content')
-      </div>
-      @include('includes.footer')
-    </div>
+    @yield('content')
   </div>
   @stack('prepend-script')
   @include('includes.script')
