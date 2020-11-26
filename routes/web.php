@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('pages.admin.dashboard');
+    return redirect()->route('admin');
 });
 
 /*
@@ -23,12 +23,12 @@ Route::get('/', function () {
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/admin'], function () {
+Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], function () {
     Route::get('/', function () {
         return view('pages.admin.dashboard');
-    })->middleware('auth');
+    })->name('admin');
 
-    Route::resource('/user', 'Admin\UserController')->middleware('auth');
+    Route::resource('/user', 'Admin\UserController');
 });
 
 /*

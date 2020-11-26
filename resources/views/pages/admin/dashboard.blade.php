@@ -2,96 +2,75 @@
 @section('title','Dashboard')
 @section('content')
     <section class="section">
-        <div class="row ">
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="card">
-            <div class="card-statistic-4">
-                <div class="align-items-center justify-content-between">
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                    <div class="card-content">
-                        <h5 class="font-15">New Booking</h5>
-                        <h2 class="mb-3 font-18">258</h2>
-                        <p class="mb-0"><span class="col-green">10%</span> Increase</p>
+           <div class="row">
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                  <div class="card-icon l-bg-purple">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="padding-20">
+                      <div class="text-right">
+                        <h3 class="font-light mb-0">
+                          <i class="ti-arrow-up text-success"></i> 524
+                        </h3>
+                        <span class="text-muted">Resepsionis</span>
+                      </div>
                     </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                    <div class="banner-img">
-                        <img src="assets/img/banner/1.png" alt="">
-                    </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                  <div class="card-icon l-bg-green">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="padding-20">
+                      <div class="text-right">
+                        <h3 class="font-light mb-0">
+                          <i class="ti-arrow-up text-success"></i> 158
+                        </h3>
+                        <span class="text-muted">Apoteker</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="card">
-            <div class="card-statistic-4">
-                <div class="align-items-center justify-content-between">
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                    <div class="card-content">
-                        <h5 class="font-15"> Customers</h5>
-                        <h2 class="mb-3 font-18">1,287</h2>
-                        <p class="mb-0"><span class="col-orange">09%</span> Decrease</p>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                  <div class="card-icon l-bg-cyan">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="padding-20">
+                      <div class="text-right">
+                        <h3 class="font-light mb-0">
+                          <i class="ti-arrow-up text-success"></i> 785
+                        </h3>
+                        <span class="text-muted">Dokter</span>
+                      </div>
                     </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                    <div class="banner-img">
-                        <img src="assets/img/banner/2.png" alt="">
-                    </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                  <div class="card-icon l-bg-orange">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="padding-20">
+                      <div class="text-right">
+                        <h3 class="font-light mb-0">
+                          <i class="ti-arrow-up text-success"></i> $5,263
+                        </h3>
+                        <span class="text-muted">Total</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="card">
-            <div class="card-statistic-4">
-                <div class="align-items-center justify-content-between">
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                    <div class="card-content">
-                        <h5 class="font-15">New Project</h5>
-                        <h2 class="mb-3 font-18">128</h2>
-                        <p class="mb-0"><span class="col-green">18%</span>
-                        Increase</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                    <div class="banner-img">
-                        <img src="assets/img/banner/3.png" alt="">
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="card">
-            <div class="card-statistic-4">
-                <div class="align-items-center justify-content-between">
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                    <div class="card-content">
-                        <h5 class="font-15">Revenue</h5>
-                        <h2 class="mb-3 font-18">$48,697</h2>
-                        <p class="mb-0"><span class="col-green">42%</span> Increase</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                    <div class="banner-img">
-                        <img src="assets/img/banner/4.png" alt="">
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
     </section>
 @endsection

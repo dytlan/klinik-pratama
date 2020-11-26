@@ -59,7 +59,7 @@
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> 
-              <img alt="image" src="{{ Storage::url(Auth::user()->photo->path) }}"
+              <img alt="image" src="{{ Auth::user()->photo->path }}"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">{{ Auth::user()->nama }}</div>
@@ -67,9 +67,12 @@
                 <i class="far fa-user"></i> Profile
               </a> 
               <div class="dropdown-divider"></div>
-              <a href="auth-login.html" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+              <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt mt-2"></i>
                 Logout
-              </a>
+                </button>
+              </form>
             </div>
           </li>
         </ul>

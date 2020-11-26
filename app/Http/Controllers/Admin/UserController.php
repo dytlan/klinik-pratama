@@ -21,6 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        return view('pages.admin.kelola-users.index', compact('users'));
     }
 
     /**
@@ -31,6 +32,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::All();
+        return view('pages.admin.kelola-users.create', compact('roles'));
     }
 
     /**
@@ -72,7 +74,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $roles = Role::All();
         $user = User::FindOrFail($id);
+        return view('pages.admin.kelola-users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -88,7 +92,7 @@ class UserController extends Controller
 
         $user = User::FindOrFail($id);
 
-        if(!Hash::check($request->password, $user->password)){
+        if (!Hash::check($request->password, $user->password)) {
             $hashedPassword = Hash::make($request->password);
             $request->password = $hashedPassword;
         }
