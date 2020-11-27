@@ -38,8 +38,8 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], functi
 */
 Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], function () {
     Route::get('/', function () {
-        return 'Resepsionis';
-    });
+        return view('pages.resepsionis.dashboard');
+    })->name('resepsionis');
 
     Route::resource('/pasien', 'Resepsionis\PatientController');
 });
@@ -51,8 +51,8 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], func
 */
 Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'], function () {
     Route::get('/', function () {
-        return 'dokter';
-    });
+        return view('pages.dokter.dashboard');
+    })->name('dokter');
 });
 
 /*
@@ -62,8 +62,8 @@ Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'], function () {
 */
 Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'], function () {
     Route::get('/', function () {
-        return 'apoteker';
-    });
+        return view('pages.apoteker.dashboard');
+    })->name('apoteker');
 });
 
 Auth::routes();
