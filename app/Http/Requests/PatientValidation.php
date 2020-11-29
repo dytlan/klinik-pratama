@@ -35,6 +35,8 @@ class PatientValidation extends FormRequest
             'kota'          => 'required',
             'tempat_lahir'  => 'required',
             'tanggal_lahir' => 'required',
+            'pekerjaan'     => 'required',
+            'pendidikan'    => 'required',
         ];
     }
 

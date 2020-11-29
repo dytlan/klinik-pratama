@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Resepsionis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientValidation;
+use App\Http\Requests\StorePatientValidation;
 use Illuminate\Http\Request;
 
 use App\Models\Patient;
@@ -36,7 +37,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PatientValidation $request)
+    public function store(StorePatientValidation $request)
     {
         $request->validated();
 
@@ -52,7 +53,18 @@ class PatientController extends Controller
             'kota'          => $request->kota,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'pekerjaan'     => $request->pekerjaan,
+            'pendidikan'    => $request->pendidikan,
         ]);
+
+        foreach($request->family as $family){
+            $patient->families()->create([
+                'nama'      => ,
+                'pekerjaan' => ,
+                'pendidikan'=> ,
+                'hubungan'  => ,
+            ])
+        }
     }
 
     /**
@@ -101,6 +113,8 @@ class PatientController extends Controller
             'kota'          => $request->kota,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'pekerjaan'     => $request->pekerjaan,
+            'pendidikan'    => $request->pendidikan,
         ]);
     }
 
