@@ -17,7 +17,9 @@
                           <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th>Email</th>
+                            <th>Username</th>
+                            <th>STR</th>
+                            <th>Masa berlaku</th>
                             <th>Roles</th>
                             <th>Action</th>
                           </tr>
@@ -26,8 +28,10 @@
                         @foreach ($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->nama }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ ucwords($user->name) }}</td>
+                            <td>{{ $user->username }}</td>
+                            <td>{{ $user->str }}</td>
+                            <td>{{ \Carbon\Carbon::create($user->masa_berlaku)->format('d-m-Y') }}</td>
                             <td>{{ ucwords($user->role->nama) }}</td>
                             <td>
                             <div class="d-flex pl-2">

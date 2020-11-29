@@ -47,9 +47,9 @@
                <div class="row">
                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" required placeholder="Masukkan Email" value="{{ old('email') }}">
-                            @error('email')
+                            <label>username</label>
+                            <input type="username" class="form-control @error('username') is-invalid @enderror" name="text" required placeholder="Masukkan Username" value="{{ old('username') }}">
+                            @error('username')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
