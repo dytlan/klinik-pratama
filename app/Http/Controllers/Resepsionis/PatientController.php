@@ -46,25 +46,12 @@ class PatientController extends Controller
             'jk'            => $request->jk,
             'no_hp'         => $request->no_hp,
             'alamat'        => $request->alamat,
-            'rt'            => $request->rt,
-            'rw'            => $request->rw,
-            'kelurahan'     => $request->kelurahan,
-            'kecamatan'     => $request->kecamatan,
-            'kota'          => $request->kota,
+            'nik'           => $request->rt,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'pekerjaan'     => $request->pekerjaan,
             'pendidikan'    => $request->pendidikan,
         ]);
-
-        // foreach($request->family as $family){
-        //     $patient->families()->create([
-        //         'nama'      => ,
-        //         'pekerjaan' => ,
-        //         'pendidikan'=> ,
-        //         'hubungan'  => ,
-        //     ])
-        // }
     }
 
     /**
@@ -106,11 +93,7 @@ class PatientController extends Controller
             'jk'            => $request->jk,
             'no_hp'         => $request->no_hp,
             'alamat'        => $request->alamat,
-            'rt'            => $request->rt,
-            'rw'            => $request->rw,
-            'kelurahan'     => $request->kelurahan,
-            'kecamatan'     => $request->kecamatan,
-            'kota'          => $request->kota,
+            'nik'           => $request->rt,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'pekerjaan'     => $request->pekerjaan,

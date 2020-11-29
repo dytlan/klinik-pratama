@@ -15,7 +15,7 @@ class Patient extends Model
         'tanggal_lahir',
         'nik',
         'pekerjaan',
-        'pendidikan'
+        'pendidikan',
     ];
 
     public function families(){

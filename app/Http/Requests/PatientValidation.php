@@ -24,15 +24,11 @@ class PatientValidation extends FormRequest
     public function rules()
     {
         return [
-            'nama'          => 'required|min:5|max:50',
+            'nama'          => 'required|min:3|max:50',
             'jk'            => 'required',
             'no_hp'         => 'required|digits_between:10,15|numeric',
             'alamat'        => 'required',
-            'rt'            => 'required',
-            'rw'            => 'required',
-            'kelurahan'     => 'required',
-            'kecamatan'     => 'required',
-            'kota'          => 'required',
+            'nik'            => 'required',
             'tempat_lahir'  => 'required',
             'tanggal_lahir' => 'required',
             'pekerjaan'     => 'required',
