@@ -21,9 +21,11 @@ class UserSeeder extends Seeder
         for($i = 0; $i<20; $i++){
             User::create([
                 'nama' => $faker->name,
-                'email' => $faker->email,
+                'username' => $faker->unique()->userName,
                 'role_id' => $faker->numberBetween(1,4),
-                'password' => Hash::make('1234567890')
+                'str' => $faker->randomDigit,
+                'password' => Hash::make('1234567890'),
+                'masa_berlaku' => $faker->date()
             ]);
         }
     }
