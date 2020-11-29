@@ -24,7 +24,7 @@ class KategoriObatValidation extends FormRequest
     public function rules()
     {
         return [
-            'kategori' => 'required|min:5|max:50'
+            'kategori' => 'required|max:50'
         ];
     }
 
@@ -36,7 +36,6 @@ class KategoriObatValidation extends FormRequest
     public function messages(){
         return [
             '*.required' => ':attribute wajib di isi.',
-            '*.min'  => ':attribute minimal :min karakter. ',
             '*.max' => ':attribute maksimal :max karakter. ',
         ];
     }
