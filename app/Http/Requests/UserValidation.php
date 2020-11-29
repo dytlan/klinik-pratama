@@ -26,7 +26,7 @@ class UserValidation extends FormRequest
     {
         return [
             'nama' => 'required|min:5|max:50',
-            'email' => 'required|unique:App\Models\User,email'.Auth::id(),
+            'username' => 'required|unique:App\Models\User,username'.Auth::id(),
             'password' => 'required'
         ];
     }
@@ -39,7 +39,7 @@ class UserValidation extends FormRequest
     public function messages(){
         return [
             '*.required' => ':attribute wajib di isi.',
-            'email.unique' => ':input telah terdaftar.',
+            'username.unique' => ':input telah terdaftar.',
             'name.min'  => ':attribute minimal :min karakter. ',
             'name.max' => ':attribute maksimal :max karakter. ',
         ];
