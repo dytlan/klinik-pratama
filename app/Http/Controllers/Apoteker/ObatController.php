@@ -41,7 +41,7 @@ class ObatController extends Controller
 
         if($request->jumlah < 30 && $request->jumlah >0){
             $request->status = 'warning';
-        } else if($request->jumlah = 0) {
+        } else if($request->jumlah == 0) {
             $request->status = 'habis';
         } else {
             $request->status = 'ada';
@@ -92,7 +92,7 @@ class ObatController extends Controller
 
         if($request->jumlah < 30 && $request->jumlah >0){
             $request->status = 'warning';
-        } else if($request->jumlah = 0) {
+        } else if($request->jumlah == 0) {
             $request->status = 'habis';
         } else {
             $request->status = 'ada';
