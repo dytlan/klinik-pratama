@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return redirect()->route('admin');
-});
+})->middleware(['auth', 'isAdmin']);
 
 /*
 |--------------------------------------------------------------------------
