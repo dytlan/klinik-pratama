@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Apoteker;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KategoriObatValidation;
 use App\Models\KategoriObat;
+use Alert;
 
 class KategoriObatController extends Controller
 {
@@ -16,8 +17,7 @@ class KategoriObatController extends Controller
     public function index()
     {
         $categories = KategoriObat::All();
-
-
+        return view('pages.apoteker.kategori-obat.index', compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class KategoriObatController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.apoteker.kategori-obat.create');
     }
 
     /**
@@ -43,6 +43,8 @@ class KategoriObatController extends Controller
         KategoriObat::create([
             'kategori' => $request->kategori
         ]);
+
+        return redirect()->route('kategori.index')->with('toast_success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -65,6 +67,7 @@ class KategoriObatController extends Controller
     public function edit($id)
     {
         $category = KategoriObat::FindOrFail($id);
+        return view('pages.apoteker.kategori-obat.edit', compact('category'));
     }
 
     /**
@@ -77,10 +80,12 @@ class KategoriObatController extends Controller
     public function update(KategoriObatValidation $request, $id)
     {
         $request->validated();
-        
+
         KategoriObat::FindOrFail($id)->update([
             'kategori' => $request->kategori
         ]);
+
+        return redirect()->route('kategori.index')->with('toast_success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -92,5 +97,6 @@ class KategoriObatController extends Controller
     public function destroy($id)
     {
         KategoriObat::destroy($id);
+        return redirect()->route('kategori.index')->with('toast_success', 'Data Berhasil Dihapus');
     }
 }
