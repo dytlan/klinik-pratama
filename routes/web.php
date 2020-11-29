@@ -64,6 +64,8 @@ Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'], function (
     Route::get('/', function () {
         return view('pages.apoteker.dashboard');
     })->name('apoteker');
+
+    Route::resource('/obat/kategori', 'Apoteker\KategoriObatController');
 });
 
 Auth::routes();

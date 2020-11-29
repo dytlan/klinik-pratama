@@ -57,14 +57,14 @@ class PatientController extends Controller
             'pendidikan'    => $request->pendidikan,
         ]);
 
-        foreach($request->family as $family){
-            $patient->families()->create([
-                'nama'      => ,
-                'pekerjaan' => ,
-                'pendidikan'=> ,
-                'hubungan'  => ,
-            ])
-        }
+        // foreach($request->family as $family){
+        //     $patient->families()->create([
+        //         'nama'      => ,
+        //         'pekerjaan' => ,
+        //         'pendidikan'=> ,
+        //         'hubungan'  => ,
+        //     ])
+        // }
     }
 
     /**
