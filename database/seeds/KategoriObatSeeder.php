@@ -25,20 +25,11 @@ class KategoriObatSeeder extends Seeder
             ]);
 
             for($i = 0; $i< 7;$i++){
-                $jumlah = $faker->numberBetween(0,500);
-                if($jumlah < 30 && $jumlah >0){
-                    $status = 'warning';
-                } else if($jumlah == 0) {
-                    $status = 'habis';
-                } else {
-                    $status = 'ada';
-                }
                 $categoryMed->medicines()->create([
                     'nama'              => $faker->company,
                     'kandungan'         => $faker->realText,
                     'harga'             => $faker->numberBetween(1000,5000000),
-                    'status'            => $status,
-                    'jumlah'            => $jumlah,
+                    'jumlah'            => $faker->numberBetween(0,500),
                 ]);
             }
         }

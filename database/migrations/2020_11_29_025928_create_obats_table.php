@@ -19,7 +19,6 @@ class CreateObatsTable extends Migration
             $table->text('kandungan');
             $table->tinyInteger('kategori_obat_id')->unsigned();
             $table->integer('harga');
-            $table->enum('status',['ada', 'warning', 'habis']);
             $table->integer('jumlah');
             $table->timestamps();
         });
