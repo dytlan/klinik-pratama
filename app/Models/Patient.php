@@ -11,13 +11,9 @@ class Patient extends Model
         'jk',
         'no_hp',
         'alamat',
-        'rt',
-        'rw',
-        'kelurahan',
-        'kecamatan',
-        'kota',
         'tempat_lahir',
         'tanggal_lahir',
+        'nik',
         'pekerjaan',
         'pendidikan'
     ];
