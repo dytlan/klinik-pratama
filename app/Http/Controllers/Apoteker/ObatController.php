@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Apoteker;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\ObatValidation;
+use App\Models\Obat;
+use App\Models\KategoriObat;
 
 class ObatController extends Controller
 {
@@ -14,7 +16,7 @@ class ObatController extends Controller
      */
     public function index()
     {
-        //
+        $medicines = Obat::All();
     }
 
     /**
@@ -24,7 +26,7 @@ class ObatController extends Controller
      */
     public function create()
     {
-        //
+        $categories = KategoriObat::All();
     }
 
     /**
@@ -33,9 +35,26 @@ class ObatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ObatValidation $request)
     {
-        //
+        $request->validated();
+
+        if($request->jumlah < 30 && $request->jumlah >0){
+            $request->status = 'warning';
+        } else if($request->jumlah = 0) {
+            $request->status = 'habis';
+        } else {
+            $request->status = 'ada';
+        }
+
+        Obat::create([
+            'nama'              => $request->nama,
+            'kandungan'         => $request->kandungan,
+            'kategori_obat_id'  => $request->kategori_obat_id,
+            'harga'             => $request->harga,
+            'status'            => $request->status,
+            'jumlah'            => $request->jumlah,
+        ]);
     }
 
     /**
@@ -46,7 +65,7 @@ class ObatController extends Controller
      */
     public function show($id)
     {
-        //
+        $medicine = Obat::FindOrFail($id);
     }
 
     /**
@@ -57,7 +76,7 @@ class ObatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medicine = Obat::FindOrFail($id);
     }
 
     /**
@@ -67,9 +86,26 @@ class ObatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ObatValidation $request, $id)
     {
-        //
+        $request->validated();
+
+        if($request->jumlah < 30 && $request->jumlah >0){
+            $request->status = 'warning';
+        } else if($request->jumlah = 0) {
+            $request->status = 'habis';
+        } else {
+            $request->status = 'ada';
+        }
+
+        Obat::FindOrFail($id)->update([
+            'nama'              => $request->nama,
+            'kandungan'         => $request->kandungan,
+            'kategori_obat_id'  => $request->kategori_obat_id,
+            'harga'             => $request->harga,
+            'status'            => $request->status,
+            'jumlah'            => $request->jumlah,
+        ]);
     }
 
     /**
@@ -80,6 +116,6 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Obat::destroy($id);
     }
 }
