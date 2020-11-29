@@ -41,20 +41,11 @@ class ObatController extends Controller
     {
         $request->validated();
 
-        if ($request->jumlah < 30 && $request->jumlah > 0) {
-            $request->status = 'warning';
-        } else if ($request->jumlah == 0) {
-            $request->status = 'habis';
-        } else {
-            $request->status = 'ada';
-        }
-
         Obat::create([
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
             'kategori_obat_id'  => $request->kategori_obat_id,
             'harga'             => $request->harga,
-            'status'            => $request->status,
             'jumlah'            => $request->jumlah,
         ]);
     }
@@ -92,6 +83,7 @@ class ObatController extends Controller
     {
         $request->validated();
 
+<<<<<<< HEAD
         if ($request->jumlah < 30 && $request->jumlah > 0) {
             $request->status = 'warning';
         } else if ($request->jumlah == 0) {
@@ -100,12 +92,13 @@ class ObatController extends Controller
             $request->status = 'ada';
         }
 
+=======
+>>>>>>> f84257fdfdb559b01f53b75f714cb6ae507b48c9
         Obat::FindOrFail($id)->update([
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
             'kategori_obat_id'  => $request->kategori_obat_id,
             'harga'             => $request->harga,
-            'status'            => $request->status,
             'jumlah'            => $request->jumlah,
         ]);
     }
