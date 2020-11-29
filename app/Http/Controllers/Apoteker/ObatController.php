@@ -17,6 +17,7 @@ class ObatController extends Controller
     public function index()
     {
         $medicines = Obat::All();
+        return view('pages.apoteker.data-obat.index', compact('medicines'));
     }
 
     /**
@@ -27,6 +28,7 @@ class ObatController extends Controller
     public function create()
     {
         $categories = KategoriObat::All();
+        return view('pages.apoteker.data-obat.create', compact('categories'));
     }
 
     /**
@@ -81,6 +83,17 @@ class ObatController extends Controller
     {
         $request->validated();
 
+<<<<<<< HEAD
+        if ($request->jumlah < 30 && $request->jumlah > 0) {
+            $request->status = 'warning';
+        } else if ($request->jumlah == 0) {
+            $request->status = 'habis';
+        } else {
+            $request->status = 'ada';
+        }
+
+=======
+>>>>>>> f84257fdfdb559b01f53b75f714cb6ae507b48c9
         Obat::FindOrFail($id)->update([
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
