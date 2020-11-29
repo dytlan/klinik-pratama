@@ -20,18 +20,17 @@
             <div class="card-body">
             <form action="{{ route('kategori.store') }}" method="post">
                 @csrf
-         
-        
-                        <div class="form-group">
-                            <label >Kategori</label>
-                            <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" required focus placeholder="Masukkan Kategori" value="{{ old('kategori') }}">
-                            @error('kategori')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+    
+                    <div class="form-group">
+                        <label >Kategori</label>
+                        <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" required focus placeholder="Masukkan Kategori" value="{{ old('kategori') }}">
+                        @error('kategori')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
-              
+                        @enderror
+                    </div>
+                
                    
                 <button type="submit" class="btn btn-primary btn-lg">Simpan</button>
                 

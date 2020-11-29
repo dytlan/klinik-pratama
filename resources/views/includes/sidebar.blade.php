@@ -83,8 +83,8 @@
             <li class="dropdown {{(request()->is('admin/user*')) ? 'active' : ""}} ">
               <a href="{{ route('user.index') }}" class="nav-link  "><i class="fas fa-file-medical-alt"></i><span>Permintaan Resep</span></a>
             </li>
-            <li class="dropdown {{(request()->is('admin/user*')) ? 'active' : ""}}">
-              <a href="{{ route('user.index') }}" class="nav-link "><i class="fas fa-medkit"></i><span>Kelola Data Obat</span></a>
+            <li class="dropdown {{(request()->is('apoteker/data-obat*')) ? 'active' : ""}}">
+              <a href="{{ route('data-obat.index') }}" class="nav-link "><i class="fas fa-medkit"></i><span>Kelola Data Obat</span></a>
             </li>
             <li class="dropdown {{(request()->is('apoteker/obat/kategori*')) ? 'active' : ""}}">
               <a href="{{ route('kategori.index') }}" class="nav-link "><i class="fas fa-th-large"></i><span>Kategori Obat</span></a>

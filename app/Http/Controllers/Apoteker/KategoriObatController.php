@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Apoteker;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KategoriObatValidation;
 use App\Models\KategoriObat;
-use Alert;
+
 
 class KategoriObatController extends Controller
 {
