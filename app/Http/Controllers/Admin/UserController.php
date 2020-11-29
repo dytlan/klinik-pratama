@@ -48,10 +48,12 @@ class UserController extends Controller
         $hashedPassword = Hash::make($request->password);
 
         User::create([
-            'nama'      => $request->nama,
-            'username'     => $request->username,
-            'role_id'   => $request->role_id,
-            'password'  => $hashedPassword
+            'nama'          => $request->nama,
+            'username'      => $request->username,
+            'str'           => $request->str,
+            'masa_berlaku'  => $request->masa_berlaku,
+            'role_id'       => $request->role_id,
+            'password'      => $hashedPassword
         ]);
 
         return redirect()->route('user.index')->with('toast_success', 'Data berhasil dibuat');
@@ -100,10 +102,12 @@ class UserController extends Controller
         }
 
         $user->update([
-            'nama'      => $request->nama,
-            'username'     => $request->username,
-            'role_id'   => $request->role_id,
-            'password'  => $request->password
+            'nama'          => $request->nama,
+            'username'      => $request->username,
+            'str'           => $request->str,
+            'masa_berlaku'  => $request->masa_berlaku,
+            'role_id'       => $request->role_id,
+            'password'      => $hashedPassword
         ]);
     }
 

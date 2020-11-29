@@ -26,7 +26,7 @@ class UserValidation extends FormRequest
     {
         return [
             'nama' => 'required|min:5|max:50',
-            'username' => 'required|unique:App\Models\User,username'.Auth::id(),
+            'username' => 'required',
             'password' => 'required'
         ];
     }
