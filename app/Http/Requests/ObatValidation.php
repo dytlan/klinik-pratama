@@ -27,7 +27,8 @@ class ObatValidation extends FormRequest
             'nama' => 'required|min:5|max:150',
             'kandungan' => 'required',
             'kategori_obat_id' => 'required|numeric',
-            ''
+            'harga' => 'required|numeric',
+            'jumlah' => 'required|numeric',
         ];
     }
 }
