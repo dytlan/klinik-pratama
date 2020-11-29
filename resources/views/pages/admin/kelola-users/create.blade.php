@@ -11,6 +11,7 @@
             </nav>
         </div>
     </div>
+
     <div class="row">
         <div class="col-12">
         <div class="card">
@@ -18,7 +19,7 @@
             <h4>Silahkan isi form</h4>
             </div>
             <div class="card-body">
-            <form action="#" method="post">
+            <form action="{{ route('user.store') }}" method="post">
                 @csrf
                <div class="row">
                    <div class="col-md-6">
@@ -34,9 +35,9 @@
                    </div>
                    <div class="col-md-6">
                        <div class="form-group">
-                           <label>Username</label>
-                           <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" required placeholder="Masukkan Username" value="{{ old('username') }}">
-                            @error('username')
+                           <label>STR</label>
+                           <input type="text" class="form-control @error('str') is-invalid @enderror" name="str" required placeholder="Masukkan STR" value="{{ old('str') }}">
+                            @error('str')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -47,8 +48,8 @@
                <div class="row">
                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>username</label>
-                            <input type="username" class="form-control @error('username') is-invalid @enderror" name="text" required placeholder="Masukkan Username" value="{{ old('username') }}">
+                            <label>Username</label>
+                            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" required placeholder="Masukkan Username" value="{{ old('username') }}">
                             @error('username')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -84,6 +85,17 @@
                             </div>
                             @enderror
                         </div>
+                   </div>
+                    <div class="col-md-6">
+                       <div class="form-group">
+                           <label>Masa Berlaku</label>
+                           <input type="date" class="form-control @error('masa_berlaku') is-invalid @enderror" name="masa_berlaku" required  value="{{ old('masa_berlaku') }}">
+                            @error('masa_berlaku')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                       </div>
                    </div>
                </div>
                 <button type="submit" class="btn btn-primary btn-lg">Simpan</button>

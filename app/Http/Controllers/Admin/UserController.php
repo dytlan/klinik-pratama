@@ -53,6 +53,8 @@ class UserController extends Controller
             'role_id'   => $request->role_id,
             'password'  => $hashedPassword
         ]);
+
+        return redirect()->route('user.index')->with('toast_success', 'Data berhasil dibuat');
     }
 
     /**

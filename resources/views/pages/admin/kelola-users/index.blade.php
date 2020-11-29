@@ -28,7 +28,7 @@
                         @foreach ($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ ucwords($user->name) }}</td>
+                            <td>{{ ucwords($user->nama) }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->str }}</td>
                             <td>{{ \Carbon\Carbon::create($user->masa_berlaku)->format('d-m-Y') }}</td>
