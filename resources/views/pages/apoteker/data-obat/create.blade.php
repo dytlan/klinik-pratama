@@ -76,6 +76,11 @@
                     <div class="form-group">
                         <label>Kandungan Obat</label>
                         <textarea name="kandungan" style="height: 100px !important" required class="form-control @error('kandungan') is-invalid @enderror" cols="30" rows="10" value="{{ old('kandungan') }}"></textarea>
+                        @error('kandungan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                    
                 <button type="submit" class="btn btn-primary btn-lg">Simpan</button>

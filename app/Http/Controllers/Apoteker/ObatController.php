@@ -48,6 +48,8 @@ class ObatController extends Controller
             'harga'             => $request->harga,
             'jumlah'            => $request->jumlah,
         ]);
+
+        return redirect()->route('data-obat.index')->with('toast_success', 'Data berhasil dibuat');
     }
 
     /**
@@ -83,17 +85,6 @@ class ObatController extends Controller
     {
         $request->validated();
 
-<<<<<<< HEAD
-        if ($request->jumlah < 30 && $request->jumlah > 0) {
-            $request->status = 'warning';
-        } else if ($request->jumlah == 0) {
-            $request->status = 'habis';
-        } else {
-            $request->status = 'ada';
-        }
-
-=======
->>>>>>> f84257fdfdb559b01f53b75f714cb6ae507b48c9
         Obat::FindOrFail($id)->update([
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
