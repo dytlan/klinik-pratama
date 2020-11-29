@@ -18,7 +18,7 @@
             <h4>Edit akun {{ $user->nama }}</h4>
             </div>
             <div class="card-body">
-            <form action="#" method="post">
+            <form action="{{ route('user.update',$user->id) }}" method="post">
                 @method('PUT')
                 @csrf
                <div class="row">
@@ -57,17 +57,18 @@
                             @enderror
                        </div>
                    </div>
-                   <div class="col-md-6">
+                    <div class="col-md-6">
                        <div class="form-group">
-                           <label>Password</label>
-                           <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Masukkan Password">
-                            @error('password')
+                           <label>Masa Berlaku</label>
+                           <input type="date" class="form-control @error('masa_berlaku') is-invalid @enderror" name="masa_berlaku" required value="{{ $user->masa_berlaku }}">
+                            @error('masa_berlaku')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                        </div>
                    </div>
+               
                </div>
                <div class="row">
                    <div class="col-md-6">
@@ -86,17 +87,7 @@
                             @enderror
                         </div>
                    </div>
-                     <div class="col-md-6">
-                       <div class="form-group">
-                           <label>Masa Berlaku</label>
-                           <input type="date" class="form-control @error('masa_berlaku') is-invalid @enderror" name="masa_berlaku" required value="{{ $user->masa_berlaku }}">
-                            @error('masa_berlaku')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                       </div>
-                   </div>
+                    
                </div>
                 <button type="submit" class="btn btn-primary btn-lg">Simpan</button>
                 

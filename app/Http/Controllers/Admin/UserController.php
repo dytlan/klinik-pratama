@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Role;
 
 use App\Http\Requests\UserValidation;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -90,25 +91,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserValidation $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validated();
-
         $user = User::FindOrFail($id);
-
-        if (!Hash::check($request->password, $user->password)) {
-            $hashedPassword = Hash::make($request->password);
-            $request->password = $hashedPassword;
-        }
-
         $user->update([
             'nama'          => $request->nama,
             'username'      => $request->username,
             'str'           => $request->str,
             'masa_berlaku'  => $request->masa_berlaku,
             'role_id'       => $request->role_id,
-            'password'      => $hashedPassword
         ]);
+
+        return redirect()->route('user.index')->with('toast_success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -120,5 +114,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
+        return redirect()->route('user.index')->with('toast_success', 'Data Berhasil Dihapus');
     }
 }
