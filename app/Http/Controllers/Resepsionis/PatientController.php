@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Resepsionis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientValidation;
-use App\Http\Requests\StorePatientValidation;
 use Illuminate\Http\Request;
 
 use App\Models\Patient;
@@ -38,7 +37,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePatientValidation $request)
+    public function store(PatientValidation $request)
     {
         $request->validated();
 

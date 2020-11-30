@@ -41,6 +41,10 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], func
         return view('pages.resepsionis.dashboard');
     })->name('resepsionis');
 
+    Route::get('/register/pelayanan', function(){
+
+    });
+    
     Route::resource('/pasien', 'Resepsionis\PatientController');
 });
 
