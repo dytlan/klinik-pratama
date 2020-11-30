@@ -132,7 +132,7 @@
                    <div class="col-12">
                         <div class="form-group">
                            <label>Alamat Lengkap</label>
-                           <textarea style="height: 100px !important" class="form-control @error('alamat') is-invalid @enderror" name="alamat" required placeholder="Masukkan Alamat Lengkap" value="{{ old('alamat') }}"></textarea>
+                           <textarea style="height: 100px !important" class="form-control @error('alamat') is-invalid @enderror" name="alamat" required placeholder="Masukkan Alamat Lengkap" >{{ old('alamat') }}</textarea>
                             @error('alamat')
                             <div class="invalid-feedback">
                                 {{ $message }}
