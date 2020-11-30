@@ -19,6 +19,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::All();
+        return view('pages.resepsionis.pasien.index', compact('patients'));
     }
 
     /**
@@ -28,7 +29,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.resepsionis.pasien.create');
     }
 
     /**
@@ -46,12 +47,14 @@ class PatientController extends Controller
             'jk'            => $request->jk,
             'no_hp'         => $request->no_hp,
             'alamat'        => $request->alamat,
-            'nik'           => $request->rt,
+            'nik'           => $request->nik,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'pekerjaan'     => $request->pekerjaan,
             'pendidikan'    => $request->pendidikan,
         ]);
+
+        return redirect()->route('pasien.index')->with('toast_success', 'Data berhasil dibuat');
     }
 
     /**
@@ -74,6 +77,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient = Patient::FindOrFail($id);
+        return view('pages.resepsionis.pasien.edit', compact('patient'));
     }
 
     /**
@@ -93,12 +97,14 @@ class PatientController extends Controller
             'jk'            => $request->jk,
             'no_hp'         => $request->no_hp,
             'alamat'        => $request->alamat,
-            'nik'           => $request->rt,
+            'nik'           => $request->nik,
             'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'pekerjaan'     => $request->pekerjaan,
             'pendidikan'    => $request->pendidikan,
         ]);
+
+        return redirect()->route('pasien.index')->with('toast_success', 'Data berhasil diubah');
     }
 
     /**

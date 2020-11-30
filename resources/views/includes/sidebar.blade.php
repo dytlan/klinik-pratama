@@ -34,6 +34,12 @@
             <li class="dropdown {{(request()->is('resepsionis')) ? 'active' : ""}}">
               <a href="{{ route('resepsionis') }}" class="nav-link "><i class="fas fa-desktop"></i><span>Dashboard</span></a>
             </li>
+            <li class="dropdown {{(request()->is('resepsionis/pasien*')) ? 'active' : ""}}">
+              <a href="{{ route('pasien.index') }}" class="nav-link "><i class="fas fa-users"></i><span>Pasien</span></a>
+            </li>
+            <li class="dropdown {{(request()->is('a')) ? 'active' : ""}}">
+              <a href="{{ route('resepsionis') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
+            </li>
           
             {{-- <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
