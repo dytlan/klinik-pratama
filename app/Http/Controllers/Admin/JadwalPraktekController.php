@@ -19,6 +19,7 @@ class JadwalPraktekController extends Controller
     public function index()
     {
         $schedules = JadwalPraktek::All();
+        return view('pages.admin.jadwal.index', compact('schedules'));
     }
 
     /**
@@ -28,9 +29,11 @@ class JadwalPraktekController extends Controller
      */
     public function create()
     {
-        $users = User::whereHas('role', function($query){
+        $users = User::whereHas('role', function ($query) {
             $query->where('nama', 'dokter');
-        });
+        })->get();
+
+        return view('pages.admin.jadwal.create', compact('users'));
     }
 
     /**
@@ -51,6 +54,8 @@ class JadwalPraktekController extends Controller
             'ruangan'   => $request->ruangan,
             'user_id'   => $request->user_id
         ]);
+
+        return redirect()->route('jadwal.index')->with('toast_success', 'Data berhasil dibuat');
     }
 
     /**
@@ -73,6 +78,10 @@ class JadwalPraktekController extends Controller
     public function edit($id)
     {
         $schedule = JadwalPraktek::FindOrFail($id);
+        $users = User::whereHas('role', function ($query) {
+            $query->where('nama', 'dokter');
+        })->get();
+        return view('pages.admin.jadwal.edit', compact('schedule', 'users'));
     }
 
     /**
@@ -94,6 +103,8 @@ class JadwalPraktekController extends Controller
             'ruangan'   => $request->ruangan,
             'user_id'   => $request->user_id
         ]);
+
+        return redirect()->route('jadwal.index')->with('toast_success', 'Data berhasil diubah');
     }
 
     /**
@@ -105,5 +116,6 @@ class JadwalPraktekController extends Controller
     public function destroy($id)
     {
         JadwalPraktek::destroy($id);
+        return redirect()->route('jadwal.index')->with('toast_success', 'Data berhasil dihapus');
     }
 }

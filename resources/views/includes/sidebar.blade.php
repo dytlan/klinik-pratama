@@ -12,8 +12,8 @@
             <li class="dropdown {{(request()->is('admin/user*')) ? 'active' : ""}}">
               <a href="{{ route('user.index') }}" class="nav-link"><i data-feather="users"></i><span>Kelola Users</span></a>
             </li>
-            <li class="dropdown {{(request()->is('admin/ruangan*')) ? 'active' : ""}}">
-              <a href="{{ route('ruangan.index') }}" class="nav-link"><i class="fa fa-door-open"></i><span>Ruangan</span></a>
+            <li class="dropdown {{(request()->is('admin/jadwal*')) ? 'active' : ""}}">
+              <a href="{{ route('jadwal.index') }}" class="nav-link"><i class="fa fa-door-open"></i><span>Ruangan</span></a>
             </li>
             {{-- <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
