@@ -24,7 +24,7 @@ class PatientValidation extends FormRequest
     public function rules()
     {
         return [
-            'nama'          => 'required|min:3|max:50',
+            'nama'          => 'required|max:50',
             'jk'            => 'required',
             'no_hp'         => 'required|digits_between:10,15|numeric',
             'alamat'        => 'required',
@@ -45,7 +45,6 @@ class PatientValidation extends FormRequest
         return [
             '*.required' => ':attribute wajib di isi.',
             'no_hp.digits_between' => 'Nomor handphone minimal :min digit dan maksimal :max digit.',
-            'name.min'  => ':attribute minimal :min karakter. ',
             'name.max' => ':attribute maksimal :max karakter. ',
         ];
     }

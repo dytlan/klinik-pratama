@@ -28,6 +28,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], functi
         return view('pages.admin.dashboard');
     })->name('admin');
 
+    Route::resource('/jadwal', 'Admin\JadwalPraktekController');
     Route::resource('/user', 'Admin\UserController');
 });
 

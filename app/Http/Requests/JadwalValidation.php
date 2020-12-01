@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class UserValidation extends FormRequest
+class JadwalValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,7 @@ class UserValidation extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|max:50',
-            'username' => 'required',
-            'password' => 'required'
+            '*' => 'required',
         ];
     }
 
@@ -39,8 +36,6 @@ class UserValidation extends FormRequest
     public function messages(){
         return [
             '*.required' => ':attribute wajib di isi.',
-            'username.unique' => ':input telah terdaftar.',
-            'name.max' => ':attribute maksimal :max karakter. ',
         ];
     }
 }

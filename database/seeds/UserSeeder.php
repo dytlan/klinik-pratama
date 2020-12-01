@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             User::create([
                 'nama' => $faker->name,
                 'username' => $faker->unique()->userName,
-                'role_id' => $faker->numberBetween(1,4),
+                'role_id' => $faker->numberBetween(1,5),
                 'str' => $faker->randomDigit,
                 'password' => Hash::make('1234567890'),
                 'masa_berlaku' => $faker->date()
