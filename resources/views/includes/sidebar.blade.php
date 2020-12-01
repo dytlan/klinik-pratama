@@ -110,5 +110,29 @@
          
           </ul>
        </aside>
+
+       @elseif(Auth::user()->role_id === 5)
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{{ route('bidan') }}"><span>Bidan</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="dropdown {{(request()->is('bidan')) ? 'active' : ""}}">
+              <a href="{{ route('bidan') }}" class="nav-link "><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+            </li>
+          
+            {{-- <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                  data-feather="users"></i><span>Widgets</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
+                <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
+              </ul>
+            </li> --}}
+           
+         
+          </ul>
+       </aside>
       @endif
 </div>

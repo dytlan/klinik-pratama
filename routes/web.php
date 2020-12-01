@@ -37,15 +37,14 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], functi
 | Resepsionis Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], function () {
+Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsionis']], function () {
     Route::get('/', function () {
         return view('pages.resepsionis.dashboard');
     })->name('resepsionis');
 
-    Route::get('/register/pelayanan', function(){
-
+    Route::get('/register/pelayanan', function () {
     });
-    
+
     Route::resource('/pasien', 'Resepsionis\PatientController');
 });
 
@@ -54,7 +53,7 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => 'isResepsionis'], func
 | Dokter Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'], function () {
+Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter']], function () {
     Route::get('/', function () {
         return view('pages.dokter.dashboard');
     })->name('dokter');
@@ -66,10 +65,10 @@ Route::group(['prefix' => '/dokter', 'middleware' => 'isDokter'], function () {
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => '/bidan', 'middleware' => 'isBidan'], function () {
+Route::group(['prefix' => '/bidan', 'middleware' => ['auth', 'isBidan']], function () {
     Route::get('/', function () {
-        
-    });
+        return view('pages.bidan.dashboard');
+    })->name('bidan');
 });
 
 /*
@@ -77,7 +76,7 @@ Route::group(['prefix' => '/bidan', 'middleware' => 'isBidan'], function () {
 | Apoteker Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/apoteker', 'middleware' => 'isApoteker'], function () {
+Route::group(['prefix' => '/apoteker', 'middleware' => ['auth', 'isApoteker']], function () {
     Route::get('/', function () {
         return view('pages.apoteker.dashboard');
     })->name('apoteker');
