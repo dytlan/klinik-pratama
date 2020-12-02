@@ -32,7 +32,7 @@
                             <td>{{ ucwords($schedule->hari) }}</td>
                             <td>{{ $schedule->mulai }} - {{ $schedule->sampai }}</td>
                             <td>{{ $schedule->ruangan }}</td>
-                            <td>{{ $schedule->user->name }}</td>
+                            <td>{{ $schedule->user->nama }}</td>
                             <td>
                             <div class="d-flex pl-2">
                                 <a href="{{ route('jadwal.edit',$schedule->id) }}" class="btn btn-warning btn-sm btn-icon mr-2">

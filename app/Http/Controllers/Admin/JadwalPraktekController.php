@@ -7,8 +7,8 @@ use App\Models\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JadwalValidation;
-use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 class JadwalPraktekController extends Controller
 {
     /**
@@ -46,9 +46,11 @@ class JadwalPraktekController extends Controller
     {
         $request->validated();
 
+        $day = Carbon::parse($request->hari)->format('l');
+
         JadwalPraktek::create([
             'nama'      => $request->nama,
-            'hari'      => $request->hari,
+            'hari'      => $day,
             'mulai'     => $request->mulai,
             'sampai'    => $request->sampai,
             'ruangan'   => $request->ruangan,
@@ -78,10 +80,10 @@ class JadwalPraktekController extends Controller
     public function edit($id)
     {
         $schedule = JadwalPraktek::FindOrFail($id);
-        $users = User::whereHas('role', function ($query) {
+        $user = User::whereHas('role', function ($query) {
             $query->where('nama', 'dokter');
         })->get();
-        return view('pages.admin.jadwal.edit', compact('schedule', 'users'));
+        return view('pages.admin.jadwal.edit', compact('schedule', 'user'));
     }
 
     /**
@@ -94,10 +96,11 @@ class JadwalPraktekController extends Controller
     public function update(JadwalValidation $request, $id)
     {
         $request->validated();
+        $day = Carbon::parse($request->hari)->format('l');
         $schedule = JadwalPraktek::FindOrFail($id);
         $schedule->update([
             'nama'      => $request->nama,
-            'hari'      => $request->hari,
+            'hari'      => $day,
             'mulai'     => $request->mulai,
             'sampai'    => $request->sampai,
             'ruangan'   => $request->ruangan,
