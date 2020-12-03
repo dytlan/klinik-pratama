@@ -41,7 +41,7 @@
               <a href="{{ route('pasien.index') }}" class="nav-link "><i class="fas fa-users"></i><span>Pasien</span></a>
             </li>
             <li class="dropdown {{(request()->is('resepsionis/registrasi/pelayanan*')) ? 'active' : ""}}">
-              <a href="{{ route('registrasi-pelayanan') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
+              <a href="{{ route('pelayanan.index') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
             </li>
           
             {{-- <li class="dropdown">

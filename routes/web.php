@@ -38,17 +38,14 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], functi
 | Resepsionis Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsionis']], function () {
+Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsionis'], 'namespace' => 'Resepsionis'], function () {
     Route::get('/', function () {
         return view('pages.resepsionis.dashboard');
     })->name('resepsionis');
 
-    Route::get('/registrasi/pelayanan', function () {
-        $services = Pelayanan::all();
-        return view('pages.resepsionis.register-pelayanan.index', compact('services'));
-    })->name('registrasi-pelayanan');
+    Route::resource('/registrasi/pelayanan', 'RegisterPelayananController');
 
-    Route::resource('/pasien', 'Resepsionis\PatientController');
+    Route::resource('/pasien', 'PatientController');
 });
 
 /*

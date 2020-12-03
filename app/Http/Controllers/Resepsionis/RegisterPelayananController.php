@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resepsionis;
 
 use App\Models\RegisterPelayanan;
+use App\Models\Pelayanan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class RegisterPelayananController extends Controller
      */
     public function index()
     {
-        $services = RegisterPelayanan::All();
+        $services = Pelayanan::all();
+        return view('pages.resepsionis.register-pelayanan.index', compact('services'));
     }
 
     /**
