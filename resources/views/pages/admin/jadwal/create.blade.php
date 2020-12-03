@@ -26,8 +26,14 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label >Nama Pelayanan</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" required focus placeholder="Masukkan Nama Pelayanan" value="{{ old('nama') }}">
-                            @error('nama')
+                            <select name="pelayanan_id" class="form-control @error('pelayanan_id') is-invalid @enderror" required>
+                                <option disabled selected>Silahkan Pilih Pelayanan</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->nama }}</option>    
+
+                                @endforeach
+                            </select>
+                            @error('pelayanan_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

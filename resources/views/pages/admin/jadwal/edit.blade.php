@@ -23,10 +23,16 @@
                 @csrf
                 <div class="row">
                     <div class="col-6">
-                        <div class="form-group">
+                         <div class="form-group">
                             <label >Nama Pelayanan</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" required focus placeholder="Masukkan Nama Pelayanan" value="{{ $schedule->nama }}">
-                            @error('nama')
+                            <select name="pelayanan_id" class="form-control @error('pelayanan_id') is-invalid @enderror" required>
+                                
+                                @foreach ($services as $service)
+                                    <option {{ $service->id === $schedule->pelayanan_id ? 'selected': '' }} value="{{ $service->id }}">{{ $service->nama }}</option>    
+
+                                @endforeach
+                            </select>
+                            @error('pelayanan_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

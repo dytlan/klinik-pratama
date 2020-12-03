@@ -28,7 +28,7 @@
                         @foreach ($schedules as $schedule)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ ucwords($schedule->nama) }}</td>
+                            <td>{{ ucwords($schedule->pelayanan->nama) }}</td>
                             <td>{{ ucwords($schedule->hari) }}</td>
                             <td>{{ \Carbon\Carbon::create($schedule->mulai)->format('H:i') }} - {{ \Carbon\Carbon::create($schedule->sampai)->format('H:i') }}</td>
                             <td>{{ $schedule->ruangan }}</td>

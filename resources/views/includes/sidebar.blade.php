@@ -13,7 +13,7 @@
               <a href="{{ route('user.index') }}" class="nav-link"><i data-feather="users"></i><span>Kelola Users</span></a>
             </li>
             <li class="dropdown {{(request()->is('admin/jadwal*')) ? 'active' : ""}}">
-              <a href="{{ route('jadwal.index') }}" class="nav-link"><i class="fa fa-door-open"></i><span>Ruangan</span></a>
+              <a href="{{ route('jadwal.index') }}" class="nav-link"><i class="fa fa-calendar-alt"></i><span>Jadwal Praktek</span></a>
             </li>
             {{-- <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
@@ -40,8 +40,8 @@
             <li class="dropdown {{(request()->is('resepsionis/pasien*')) ? 'active' : ""}}">
               <a href="{{ route('pasien.index') }}" class="nav-link "><i class="fas fa-users"></i><span>Pasien</span></a>
             </li>
-            <li class="dropdown {{(request()->is('a')) ? 'active' : ""}}">
-              <a href="{{ route('resepsionis') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
+            <li class="dropdown {{(request()->is('resepsionis/registrasi/pelayanan*')) ? 'active' : ""}}">
+              <a href="{{ route('registrasi-pelayanan') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
             </li>
           
             {{-- <li class="dropdown">

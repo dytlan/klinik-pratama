@@ -52,7 +52,7 @@ class JadwalPraktekController extends Controller
 
 
         JadwalPraktek::create([
-            'nama'      => $request->nama,
+            'pelayanan_id'      => $request->pelayanan_id,
             'hari'      => $request->hari,
             'mulai'     => $request->mulai,
             'sampai'    => $request->sampai,
@@ -102,7 +102,7 @@ class JadwalPraktekController extends Controller
         $request->validated();
         $schedule = JadwalPraktek::FindOrFail($id);
         $schedule->update([
-            'nama'      => $request->nama,
+            'pelayanan_id'      => $request->pelayanan_id,
             'hari'      => $request->hari,
             'mulai'     => $request->mulai,
             'sampai'    => $request->sampai,

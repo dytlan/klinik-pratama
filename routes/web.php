@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pelayanan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,8 +43,10 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
         return view('pages.resepsionis.dashboard');
     })->name('resepsionis');
 
-    Route::get('/register/pelayanan', function () {
-    });
+    Route::get('/registrasi/pelayanan', function () {
+        $services = Pelayanan::all();
+        return view('pages.resepsionis.register-pelayanan.index', compact('services'));
+    })->name('registrasi-pelayanan');
 
     Route::resource('/pasien', 'Resepsionis\PatientController');
 });
