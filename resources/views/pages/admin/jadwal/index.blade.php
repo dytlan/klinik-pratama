@@ -30,7 +30,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ ucwords($schedule->nama) }}</td>
                             <td>{{ ucwords($schedule->hari) }}</td>
-                            <td>{{ $schedule->mulai }} - {{ $schedule->sampai }}</td>
+                            <td>{{ \Carbon\Carbon::create($schedule->mulai)->format('H:i') }} - {{ \Carbon\Carbon::create($schedule->sampai)->format('H:i') }}</td>
                             <td>{{ $schedule->ruangan }}</td>
                             <td>{{ $schedule->user->nama }}</td>
                             <td>

@@ -37,7 +37,16 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label >Hari Kerja</label>
-                            <input type="date" id="hariKerja" required class="form-control @error('hari') is-invalid @enderror" name="hari" placeholder="Pilih Hari"  value="{{ old('hari') }}">
+                            <select name="hari" required class="form-control @error ('hari') is-invalid @enderror" >
+                                <option disabled selected>Silahkan Pilih Hari</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                            </select>
                             @error('hari')
                             <div class="invalid-feedback">
                                 {{ $message }}
