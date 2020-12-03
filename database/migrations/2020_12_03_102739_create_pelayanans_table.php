@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJadwalPrakteksTable extends Migration
+class CreatePelayanansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateJadwalPrakteksTable extends Migration
      */
     public function up()
     {
-        Schema::create('jadwal_praktek', function (Blueprint $table) {
+        Schema::create('pelayanan', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('hari',10);
-            $table->time('mulai');
-            $table->time('sampai');
-            $table->string('ruangan', 100);
-            $table->integer('user_id')->unsigned();
-            $table->tinyInteger('pelayanan_id')->unsigned();
+            $table->string('nama', 100);
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateJadwalPrakteksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jadwal_praktek');
+        Schema::dropIfExists('pelayanan');
     }
 }

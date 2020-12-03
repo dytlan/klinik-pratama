@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\JadwalPraktek;
 use App\Models\User;
+use App\Models\Pelayanan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JadwalValidation;
@@ -34,7 +35,9 @@ class JadwalPraktekController extends Controller
             $query->where('nama', 'dokter');
         })->get();
 
-        return view('pages.admin.jadwal.create', compact('users'));
+        $services = Pelayanan::all();
+
+        return view('pages.admin.jadwal.create', compact('users', 'services'));
     }
 
     /**
@@ -83,7 +86,8 @@ class JadwalPraktekController extends Controller
         $users = User::whereHas('role', function ($query) {
             $query->where('nama', 'dokter');
         })->get();
-        return view('pages.admin.jadwal.edit', compact('schedule', 'users'));
+        $services = Pelayanan::all();
+        return view('pages.admin.jadwal.edit', compact('schedule', 'users', 'services'));
     }
 
     /**

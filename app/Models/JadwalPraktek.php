@@ -8,10 +8,14 @@ class JadwalPraktek extends Model
 {
     protected $table = 'jadwal_praktek';
 
-    protected $fillable = ['nama', 'hari', 'mulai', 'sampai', 'ruangan', 'user_id'];
+    protected $fillable = ['pelayanan_id', 'hari', 'mulai', 'sampai', 'ruangan', 'user_id'];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function pelayanan(){
+        return $this->belongsTo('App\Models\Pelayanan');
     }
 
 }
