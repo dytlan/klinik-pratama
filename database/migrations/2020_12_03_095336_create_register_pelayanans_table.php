@@ -17,6 +17,7 @@ class CreateRegisterPelayanansTable extends Migration
             $table->increments('id');
             $table->integer('patient_id')->unsigned();
             $table->tinyInteger('jadwal_praktek_id')->unsigned();
+            $table->tinyInteger('pelayanan_id');
             $table->string('status',20);
             $table->string('antrian',10);
             $table->timestamps();

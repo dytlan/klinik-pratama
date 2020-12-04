@@ -13,4 +13,8 @@ class Pelayanan extends Model
     public function schedules(){
         return $this->hasMany('App\Models\JadwalPraktek');
     }
+
+    public function registrations(){
+        return $this->hasMany('App\Models\RegisterPelayanan');
+    }
 }

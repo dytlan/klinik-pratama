@@ -2,33 +2,27 @@
 
 namespace App\Http\Controllers\Resepsionis;
 
-use App\Models\RegisterPelayanan;
-use App\Models\Pelayanan;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+use App\Models\Pelayanan;
 
 class RegisterPelayananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $services = Pelayanan::all();
-        return view('pages.resepsionis.register-pelayanan.index', compact('services'));
-    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($pelayananId)
     {
-        //
+        $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
+        $day = now()->locale('id')->dayName;
+        $time = now()->addMinute(45)->toTimeString();
+        $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+         
     }
 
     /**
@@ -37,20 +31,9 @@ class RegisterPelayananController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $pelayananId)
     {
         //  
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

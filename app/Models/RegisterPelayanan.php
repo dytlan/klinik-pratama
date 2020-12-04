@@ -8,7 +8,7 @@ class RegisterPelayanan extends Model
 {
     protected $table = 'register_pelayanan';
 
-
+    protected $fillable = ['patient_id', 'jadwal_praktek_id', 'status', 'antrian', 'pelayanan_id'];
 
     public function patient(){
         return $this->belongsTo('App\Models\Patient');

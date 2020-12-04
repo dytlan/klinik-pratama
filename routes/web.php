@@ -24,13 +24,13 @@ Route::get('/', function () {
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin']], function () {
+Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin'], 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
         return view('pages.admin.dashboard');
     })->name('admin');
 
-    Route::resource('/jadwal', 'Admin\JadwalPraktekController');
-    Route::resource('/user', 'Admin\UserController');
+    Route::resource('/jadwal', 'JadwalPraktekController');
+    Route::resource('/user', 'UserController');
 });
 
 /*
@@ -43,7 +43,9 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
         return view('pages.resepsionis.dashboard');
     })->name('resepsionis');
 
-    Route::resource('/registrasi/pelayanan', 'RegisterPelayananController');
+    Route::resource('/registrasi/pelayanan', 'PelayananController')->only('index', 'show');
+    Route::get('/registrasi/pelayanan/{pelayanan}/create', 'RegisterPelayananController@create')->name('register.pelayanan.create');
+    Route::post('/registrasi/pelayanan/{pelayanan}', 'RegisterPelayananController@store')->name('register.pelayanan.store');
 
     Route::resource('/pasien', 'PatientController');
 });

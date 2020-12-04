@@ -22,7 +22,7 @@ class JadwalPraktekSeeder extends Seeder
         foreach($services as $service){
             for($i=0 ; $i < 5; $i++){
                 $service->schedules()->create([
-                    'hari' => $faker->randomElement(['senin', 'selasa', 'rabu', 'kamis', 'jum\'at', 'sabtu', 'minggu']),
+                    'hari' => $faker->randomElement(['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu']),
                     'mulai' => $faker->time(),
                     'sampai' => $faker->time(),
                     'ruangan' => $faker->companySuffix,
