@@ -17,7 +17,7 @@
                              <div class="col-6">
                                 <div class="form-group">
                                     <label for="">ID Pasien</label>
-                                    <input type="text" name="patient_id" placeholder="Masukkan ID Pasien" class="form-control">
+                                    <input type="text" name="patient_id" placeholder="Masukkan ID Pasien" class="form-control" value="{{session('patient')->id ?? ''}}">
                                 </div>
                             </div>
                             <div class="col-6 d-flex align-items-center">
@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="">Nama Pasien</label>
-                                    <input type="text" class="form-control" disabled readonly name="patient_id" value="patient_id">
+                                    <input type="text" class="form-control" disabled readonly name="patient_id" value="{{session('patient')->nama ?? '-'}}">
                                 </div>
                             </div>
                         </div>

@@ -34,12 +34,9 @@ class RegisterPelayananController extends Controller
 
         $patient = Patient::FindOrFail($request->patient_id);
 
-        $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
-        $day = now()->locale('id')->dayName;
-        $time = now()->addMinute(15)->toTimeString();
-        $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
-
-        return view('pages.resepsionis.register-pelayanan.create', compact('schedules', 'service', 'patient'));
+        $request->session()->flash('patient', $patient);
+        
+        return redirect()->back();
     }
 
     /**
