@@ -63,6 +63,10 @@
             </div>
           </div>
         </section>
+
+  @if (session('no_antrian'))
+      {{ session('no_antrian') }}
+  @endif
 @endsection
 
 @push('addon-style')
