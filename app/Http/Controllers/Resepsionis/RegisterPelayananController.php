@@ -20,8 +20,9 @@ class RegisterPelayananController extends Controller
     {
         $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
         $day = now()->locale('id')->dayName;
-        $time = now()->addMinute(45)->toTimeString();
+        $time = now()->addMinute(15)->toTimeString();
         $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+        dd($schedules);
         return view('pages.resepsionis.register-pelayanan.create', compact('schedules'));
     }
 
