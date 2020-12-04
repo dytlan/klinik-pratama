@@ -11,7 +11,8 @@
           <div class="col-12">
               <div class="card shadow-sm">
                   <div class="card-body">
-                    <form action="{{route('check.patient',['pelayanan' => $pelayananId])}}" method="POST">
+                    <form action="{{route('check.patient',$service->id)}}" method="POST">
+                        @csrf
                         <div class="row">
                              <div class="col-6">
                                 <div class="form-group">
