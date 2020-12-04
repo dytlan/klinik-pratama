@@ -25,13 +25,28 @@
                             </div>
                         </div>
                     </form>
-                    <form action="{{ route('register.pelayanan.store',$service->id) }}" method="post">
-                        
+                    
+                    @error('patient_id')
+                        <p class="text-danger">Pasien Tidak Terdaftar </p>
+                    @enderror
+                    @if (session('patient'))
+                         <form action="{{ route('register.pelayanan.store',$service->id) }}" method="post">
+                        @csrf
+
+                        <input type="text" name="patient_id" required hidden name="patient_id" value="{{ session('patient')->id }}">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="">Nama Pasien</label>
-                                    <input type="text" class="form-control" disabled readonly name="patient_id" value="{{session('patient')->nama ?? '-'}}">
+                                    <input type="text" class="form-control" disabled readonly value="{{session('patient')->nama}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">NIK Pasien</label>
+                                    <input type="text" class="form-control" disabled readonly value="{{session('patient')->nik}}">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +54,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="">Dokter Tersedia</label>
-                                    <select name="" required class="form-control">
+                                    <select name="jadwal_praktek_id" required class="form-control">
                                         <option disabled selected>Silahkan Pilih Dokter</option>
                                         @foreach ($schedules as $schedule)
                                             <option value="{{ $schedule->id }}">{{ $schedule->user->nama }} / Jam Praktek ({{ $schedule->mulai }} - {{ $schedule->sampai }})</option>
@@ -54,6 +69,8 @@
                             </div>
                         </div>
                     </form>
+                    @endif
+                   
                   </div>
               </div>
           </div>

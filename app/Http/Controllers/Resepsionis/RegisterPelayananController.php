@@ -35,7 +35,7 @@ class RegisterPelayananController extends Controller
         $patient = Patient::FindOrFail($request->patient_id);
 
         $request->session()->flash('patient', $patient);
-        
+
         return redirect()->back();
     }
 
