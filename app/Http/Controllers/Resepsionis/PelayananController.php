@@ -28,8 +28,7 @@ class PelayananController extends Controller
      */
     public function show($id)
     {
-        $registrations = Pelayanan::FindOrFail($id)->registrations()->get();
-
+        $registrations = Pelayanan::FindOrFail($id);
+        return view('pages.resepsionis.register-pelayanan.show', compact('registrations'));
     }
-
 }

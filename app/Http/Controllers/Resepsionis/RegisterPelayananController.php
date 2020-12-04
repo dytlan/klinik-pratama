@@ -22,7 +22,7 @@ class RegisterPelayananController extends Controller
         $day = now()->locale('id')->dayName;
         $time = now()->addMinute(45)->toTimeString();
         $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
-         
+        return view('pages.resepsionis.register-pelayanan.create', compact('schedules'));
     }
 
     /**
