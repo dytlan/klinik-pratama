@@ -26,7 +26,6 @@ class RegisterPelayananValidation extends FormRequest
         return [
             'patient_id'            => 'required',
             'jadwal_praktek_id'     => 'required',
-            'pelayanan_id'          => 'required',
         ];
     }
 }

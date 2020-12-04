@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Resepsionis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckPatientValidation;
+use App\Http\Requests\RegisterPelayananValidation;
 use Illuminate\Http\Request;
 
 use App\Models\Pelayanan;
@@ -22,7 +23,8 @@ class RegisterPelayananController extends Controller
         $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
         $day = now()->locale('id')->dayName;
         $time = now()->addMinute(15)->toTimeString();
-        $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+        // $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+        $schedules = $service->schedules()->get();
 
         return view('pages.resepsionis.register-pelayanan.create', compact('pelayananId', 'schedules', 'service'));
     }
@@ -45,9 +47,52 @@ class RegisterPelayananController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $pelayananId)
+    public function store(RegisterPelayananValidation $request, $pelayananId)
     {
-        //  
+        $request->validated();
+
+        $service = Pelayanan::FindOrFail($pelayananId);
+
+        $antrian = $this->generateAntrian($service, $request);
+
+        $service->registrations()->create([
+            'patient_id'            => $request->patient_id,
+            'jadwal_praktek_id'     => $request->jadwal_praktek_id,
+            'hari'                  => now(),
+            'kode'                  => $antrian['kode'],
+            'antrian'               => $antrian['nomor'],
+            'pelayanan_id'          => $pelayananId
+        ]);
+
+        return redirect()->route('pelayanan.show', $pelayananId);
+    }
+
+    function generateAntrian($service, $request)
+    {
+        $date = now()->toDateString();
+
+        $checkRegistration = $service->registrations()->where('jadwal_praktek_id', $request->jadwal_praktek_id)->where('created_at', 'like', $date . '%')->latest('created_at')->first();
+        
+        
+        if($checkRegistration){
+            $antrian = [
+                'kode'  => $checkRegistration->kode,
+                'nomor' => $checkRegistration->antrian + 1
+            ];
+        } else {
+            $serviceNames = explode(' ',$service->nama);
+            $antrianCode = '';
+            foreach($serviceNames as $name){
+                $antrianCode.= $name[0];
+            }
+            $antrian = [
+                'kode'  => $antrianCode,
+                'nomor' => 1
+            ];
+        }
+        
+        return $antrian;
+
     }
 
     /**

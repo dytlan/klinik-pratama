@@ -23,7 +23,8 @@ class RegisterPelayananSeeder extends Seeder
                 'jadwal_praktek_id' => $faker->numberBetween(1,24),
                 'status' => $faker->randomElement(['resepsionis','pelayanan', 'apoteker','selesai']),
                 'antrian' => $faker->unique()->numberBetween(1,50),
-                'pelayanan_id' => $faker->numberBetween(1,7)
+                'pelayanan_id' => $faker->numberBetween(1,7),
+                'kode' => $faker->randomElement(['KP', 'KBI', 'KKB', 'RTIH', 'PDU', 'KSPA', 'PDG'])
             ]);
         }
     }

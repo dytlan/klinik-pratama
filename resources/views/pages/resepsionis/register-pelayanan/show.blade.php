@@ -36,7 +36,7 @@
                       
                             <td>{{ $regist->patient_id }}</td>
                             <td>{{ ucwords($regist->patient->nama) }}</td>
-                            <td>{{ $regist->antrian }}</td>
+                            <td>{{ $regist->kode.'-'.$regist->antrian }}</td>
                             <td>{{ $regist->schedule->user->nama }}</td>
                             <td>{{ ucwords($regist->status) }}</td>
                             <td>{{ $regist->created_at->format('d-m-Y')}}</td>
