@@ -22,8 +22,8 @@ class RegisterPelayananController extends Controller
         $day = now()->locale('id')->dayName;
         $time = now()->addMinute(15)->toTimeString();
         $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
-        dd($schedules);
-        return view('pages.resepsionis.register-pelayanan.create', compact('schedules'));
+
+        return view('pages.resepsionis.register-pelayanan.create', compact('schedules', 'service'));
     }
 
     /**
