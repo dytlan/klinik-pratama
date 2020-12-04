@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Resepsionis;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckPatientValidation;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 use App\Models\Pelayanan;
+use App\Models\Patient;
 
 class RegisterPelayananController extends Controller
 {
@@ -23,7 +24,22 @@ class RegisterPelayananController extends Controller
         $time = now()->addMinute(15)->toTimeString();
         $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
 
-        return view('pages.resepsionis.register-pelayanan.create', compact('schedules', 'service'));
+        return view('pages.resepsionis.register-pelayanan.create', compact('pelayananId', 'schedules', 'service'));
+    }
+
+    public function checkPatient(CheckPatientValidation $request, $pelayananId)
+    {
+
+        $request->validated();
+
+        $patient = Patient::FindOrFail($request->patient_id);
+
+        $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
+        $day = now()->locale('id')->dayName;
+        $time = now()->addMinute(15)->toTimeString();
+        $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+    
+        return view('pages.resepsionis.register-pelayanan.create', compact('schedules', 'service', 'patient'));
     }
 
     /**

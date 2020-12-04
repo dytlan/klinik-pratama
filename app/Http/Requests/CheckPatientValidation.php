@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObatValidation extends FormRequest
+class CheckPatientValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class ObatValidation extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|min:5|max:150',
-            'kandungan' => 'required',
-            'kategori_obat_id' => 'required|numeric',
-            'harga' => 'required|numeric',
-            'jumlah' => 'required|numeric',
+            'patient_id' => 'exists:patients,id'
         ];
     }
 
@@ -39,10 +35,7 @@ class ObatValidation extends FormRequest
     */
     public function messages(){
         return [
-            '*.required' => ':attribute wajib di isi.',
-            '*.numeric' => ':input harus dalam bentuk angka.',
-            '*.max' => ':attribute maksimal :max karakter. ',
-            '*.min' => ':attribute minimal :min karakter. ',
+            'patient_id.exists' => ':attribute tidak terdaftar.',
         ];
     }
 }

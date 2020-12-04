@@ -44,6 +44,7 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
     })->name('resepsionis');
 
     Route::resource('/registrasi/pelayanan', 'PelayananController')->only('index', 'show');
+    Route::post('/registrasi/pelayanan/{pelayanan}/pasien', 'RegisterPelayananController@checkPatient')->name('check.patient');
     Route::get('/registrasi/pelayanan/{pelayanan}/create', 'RegisterPelayananController@create')->name('register.pelayanan.create');
     Route::post('/registrasi/pelayanan/{pelayanan}', 'RegisterPelayananController@store')->name('register.pelayanan.store');
 

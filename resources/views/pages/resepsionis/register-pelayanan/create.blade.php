@@ -11,12 +11,12 @@
           <div class="col-12">
               <div class="card shadow-sm">
                   <div class="card-body">
-                    <form action="#" method="POST">
+                    <form action="{{route('check.patient',['pelayanan' => $pelayananId])}}" method="POST">
                         <div class="row">
                              <div class="col-6">
                                 <div class="form-group">
                                     <label for="">ID Pasien</label>
-                                    <input type="text" name="" placeholder="Masukkan ID Pasien" class="form-control">
+                                    <input type="text" name="patient_id" placeholder="Masukkan ID Pasien" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6 d-flex align-items-center">
