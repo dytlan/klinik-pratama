@@ -64,7 +64,7 @@ class RegisterPelayananController extends Controller
             'pelayanan_id'          => $pelayananId
         ]);
 
-        return redirect()->route('pelayanan.show', $pelayananId);
+        return redirect()->route('pelayanan.show', $pelayananId)->with('nomor_antrian', alert()->info('Nomor Antrian', $antrian['kode'] . '-' . $antrian['nomor'])->autoClose(false));
     }
 
     function generateAntrian($service, $request)
@@ -72,27 +72,26 @@ class RegisterPelayananController extends Controller
         $date = now()->toDateString();
 
         $checkRegistration = $service->registrations()->where('jadwal_praktek_id', $request->jadwal_praktek_id)->where('created_at', 'like', $date . '%')->latest('created_at')->first();
-        
-        
-        if($checkRegistration){
+
+
+        if ($checkRegistration) {
             $antrian = [
                 'kode'  => $checkRegistration->kode,
                 'nomor' => $checkRegistration->antrian + 1
             ];
         } else {
-            $serviceNames = explode(' ',$service->nama);
+            $serviceNames = explode(' ', $service->nama);
             $antrianCode = '';
-            foreach($serviceNames as $name){
-                $antrianCode.= $name[0];
+            foreach ($serviceNames as $name) {
+                $antrianCode .= $name[0];
             }
             $antrian = [
                 'kode'  => $antrianCode,
                 'nomor' => 1
             ];
         }
-        
-        return $antrian;
 
+        return $antrian;
     }
 
     /**
