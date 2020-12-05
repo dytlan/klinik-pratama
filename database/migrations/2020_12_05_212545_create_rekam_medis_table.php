@@ -20,9 +20,9 @@ class CreateRekamMedisTable extends Migration
             $table->tinyInteger('pelayanan_id')->unsigned();
             $table->string('diagnosa');
             $table->string('keluhan');
-            $table->text('anamnesis')->default('-');
+            $table->text('anamnesis')->nullable();
             $table->string('tindakan', 150);
-            $table->text('keterangan')->default('-');
+            $table->text('keterangan')->nullable();
             $table->string('alergi_obat', 1)->default('0');
             $table->string('berat_badan', 8);
             $table->string('tinggi_badan', 8);
