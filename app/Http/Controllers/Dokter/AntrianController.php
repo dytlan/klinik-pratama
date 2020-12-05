@@ -18,11 +18,10 @@ class AntrianController extends Controller
 
         $schedule = JadwalPraktek::where('hari', $day)->where('user_id', $userId)->first();
 
-        $ongoingAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', 'dokter')->get();
+        $ongoingAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', 'dokter')->orderBy('antrian')->get();
 
 
-        $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', '!=', 'dokter')->get();
-
+        $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', '!=', 'dokter')->orderBy('antrian')->get();
         return view('pages.dokter.periksa-pasien.index', compact('ongoingAntrian'));
     }
 }
