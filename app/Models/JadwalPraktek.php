@@ -18,4 +18,8 @@ class JadwalPraktek extends Model
         return $this->belongsTo('App\Models\Pelayanan');
     }
 
+    public function registrations(){
+        return $this->hasMany('App\Models\RegisterPelayanan');
+    }
+
 }

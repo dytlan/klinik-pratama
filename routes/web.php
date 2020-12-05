@@ -56,10 +56,12 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
 | Dokter Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter']], function () {
+Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter'], 'namespace' => 'Dokter'], function () {
     Route::get('/', function () {
         return view('pages.dokter.dashboard');
     })->name('dokter');
+
+    Route::get('/antrian', 'AntrianController@antrian');
 });
 
 /*
