@@ -6,14 +6,14 @@
           <div class="col-6">
               <div class="card card-warning">
                   <div class="card-header">
-                      <h6>Pasien Belum Diperiksa <span class="badge badge-warning badge-sm badge-pill">14</span></h6>
+                      <h6>Pasien Belum Diperiksa <span class="badge badge-warning badge-sm badge-pill">{{ $ongoingAntrian->count() }}</span></h6>
                   </div>
                   <div class="card-body">
-                      <ul class="list-group periksa-pasien">
+                      <ul class="list-group">
                         @forelse ($ongoingAntrian as $antrian)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Cras justo odio/ No Antrian (PDU-1)
-                                <span><button class="btn btn-primary btn-sm">Periksa</button></span>
+                                {{ $antrian->patient->nama }} / No Antrian ({{ $antrian->kode }}-{{ $antrian->antrian }})
+                                <span><a href="{{ route('pasien.create',$antrian->id) }}" class="btn btn-primary btn-sm">Periksa</a></span>
                             </li>
                         @empty 
                             <li class="list-group-item text-center">
@@ -27,13 +27,20 @@
           <div class="col-6">
               <div class="card card-success">
                   <div class="card-header">
-                      <h6>Pasien Sudah Diperiksa <span class="badge badge-success badge-sm badge-pill">14</span></h6>
+                      <h6>Pasien Sudah Diperiksa <span class="badge badge-success badge-sm badge-pill">{{ $doneAntrian->count() }}</span></h6>
                   </div>
                   <div class="card-body">
-                      <ul class="list-group periksa-pasien">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Cras justo odio/ No Antrian (PDU-1) 
-                        </li>
+                      <ul class="list-group">
+                         @forelse ($doneAntrian as $done)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $done->patient->nama }} / No Antrian ({{ $done->kode }}-{{ $done->antrian }})
+                                <span class="badge badge-success badge-sm badge-pill">Sudah Diperiksa</span>
+                            </li>
+                        @empty 
+                            <li class="list-group-item text-center">
+                                Belum Ada Pasien
+                            </li>
+                        @endforelse
                     </ul>
                   </div>
               </div>

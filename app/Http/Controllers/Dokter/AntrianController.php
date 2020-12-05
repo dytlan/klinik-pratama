@@ -18,14 +18,14 @@ class AntrianController extends Controller
 
         $schedule = JadwalPraktek::where('hari', $day)->where('user_id', $userId)->first();
 
-        if(!$schedule){
-            return redirect()->back()->with('error', 'Tidak ada jadwal praktek di hari ini.');
+        if (!$schedule) {
+            return redirect()->back()->with('toast_error', 'Tidak ada jadwal praktek di hari ini.');
         }
 
         $ongoingAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', 'dokter')->orderBy('antrian')->get();
 
         $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', '!=', 'dokter')->orderBy('antrian')->get();
 
-        return view('pages.dokter.periksa-pasien.index', compact('ongoingAntrian'));
+        return view('pages.dokter.periksa-pasien.index', compact('ongoingAntrian', 'doneAntrian'));
     }
 }

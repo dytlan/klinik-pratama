@@ -14,12 +14,8 @@ class RekamMedisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($registPelayananId)
+    public function index()
     {
-        $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
-
-        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->orderByDesc('created_at')->get();
-
     }
 
     /**
@@ -27,9 +23,13 @@ class RekamMedisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($registPelayananId)
     {
-        //
+        $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
+
+        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->orderByDesc('created_at')->get();
+
+        return view('pages.dokter.periksa-pasien.create');
     }
 
     /**
