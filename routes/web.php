@@ -61,7 +61,7 @@ Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter'], 'name
         return view('pages.dokter.dashboard');
     })->name('dokter');
 
-    Route::get('/antrian', 'AntrianController@antrian');
+    Route::get('/antrian', 'AntrianController@antrian')->name('periksa-pasien');
 });
 
 /*

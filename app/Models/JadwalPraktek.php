@@ -10,16 +10,18 @@ class JadwalPraktek extends Model
 
     protected $fillable = ['pelayanan_id', 'hari', 'mulai', 'sampai', 'ruangan', 'user_id'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function pelayanan(){
+    public function pelayanan()
+    {
         return $this->belongsTo('App\Models\Pelayanan');
     }
 
-    public function registrations(){
+    public function registrations()
+    {
         return $this->hasMany('App\Models\RegisterPelayanan');
     }
-
 }

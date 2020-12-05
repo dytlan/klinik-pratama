@@ -10,7 +10,8 @@ use App\Models\JadwalPraktek;
 
 class AntrianController extends Controller
 {
-    public function antrian(){
+    public function antrian()
+    {
         $userId = Auth::id();
         $day = now()->locale('id')->dayName;
         $date = now()->toDateString();
@@ -19,9 +20,9 @@ class AntrianController extends Controller
 
         $ongoingAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', 'dokter')->get();
 
-        $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', '!=','dokter')->get();
 
+        $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', '!=', 'dokter')->get();
 
-
+        return view('pages.dokter.periksa-pasien.index', compact('ongoingAntrian'));
     }
 }

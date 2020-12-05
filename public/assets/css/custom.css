@@ -5,4 +5,8 @@
     background-color: #F7F7F7 ;
 }
 
+ul.periksa-pasien{
+    max-height: 300px;
+    overflow: auto;
+}
 /*# sourceMappingURL=custom.css.map */
