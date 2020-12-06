@@ -27,7 +27,6 @@ class TransaksiObatController extends Controller
     public function create($registerPelayananId)
     {
         $record = RekamMedis::where('register_pelayanan_id', $registerPelayananId)->first();
-        $medicines = Obat::All();
 
         return view('pages.apoteker.permintaan-resep.create', compact('record'));
     }

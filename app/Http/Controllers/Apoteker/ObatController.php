@@ -104,4 +104,10 @@ class ObatController extends Controller
     {
         Obat::destroy($id);
     }
+
+    public function fetch(){
+        $medicines = Obat::all();
+
+        return response()->json($medicines,200);
+    }
 }
