@@ -13,6 +13,6 @@ class Obat extends Model
     ];
 
     public function category(){
-        return $this->belongsTo('App\Models\KategoriObat');
+        return $this->belongsTo('App\Models\KategoriObat', 'kategori_obat_id');
     }
 }
