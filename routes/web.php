@@ -63,6 +63,7 @@ Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter'], 'name
 
     Route::get('/antrian', 'AntrianController@antrian')->name('periksa-pasien');
     Route::get('/rekam-medis/{register}', 'RekamMedisController@create')->name('create-rekam-medis');
+    Route::post('/rekam-medis/{register}', 'RekamMedisController@store')->name('rekam.medis.store');
 });
 
 /*

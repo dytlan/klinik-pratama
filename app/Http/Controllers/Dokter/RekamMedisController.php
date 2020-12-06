@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RekamMedisValidation;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Patient;
 use App\Models\RegisterPelayanan;
 use App\Models\RekamMedis;
-use Illuminate\Http\Request;
 
 class RekamMedisController extends Controller
 {
@@ -39,9 +43,29 @@ class RekamMedisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RekamMedisValidation $request, $registerId)
     {
-        //
+        $request->validated();
+        $userId = Auth::id();
+        $registAntrian = RegisterPelayanan::FindOrFail($registerId);
+
+        RekamMedis::create([
+            'patient_id'    => $registAntrian->patient_id,
+            'dokter_id'     => $userId,
+            'pelayanan_id'  => $registAntrian->pelayanan_id,
+            'diagnosa'      => $request->diagnosa,
+            'keluhan'       => $request->keluhan,
+            'anamnesis'     => $request->anamnesis ?? '-',
+            'tindakan'      => $request->tindakan,
+            'keterangan'    => $request->keterangan ?? '-',
+            'alergi_obat'   => $request->alergi_obat,
+            'berat_badan'   => $request->berat_badan,
+            'tinggi_badan'  => $request->tinggi_badan,
+            'tensi'         => $request->tensi,
+        ]);
+
+        return redirect()->back();
+        
     }
 
     /**
