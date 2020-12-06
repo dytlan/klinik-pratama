@@ -28,5 +28,6 @@ Vue.component("tambah-resep", require("./components/TambahResep.vue").default);
  */
 
 const app = new Vue({
-    el: "#app"
+    el: "#app",
+    data: {}
 });
