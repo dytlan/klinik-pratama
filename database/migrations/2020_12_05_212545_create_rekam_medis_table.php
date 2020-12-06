@@ -28,6 +28,7 @@ class CreateRekamMedisTable extends Migration
             $table->string('tinggi_badan', 8);
             $table->string('tensi', 7);
             $table->text('resep');
+            $table->integer('register_pelayanan_id')->unsigned();
             $table->timestamps();
         });
     }
