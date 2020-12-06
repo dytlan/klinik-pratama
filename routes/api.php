@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/obat','ObatController@fetch');
+Route::get('/obat','Apoteker\ObatController@fetch');
