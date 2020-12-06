@@ -17,4 +17,8 @@ class Pelayanan extends Model
     public function registrations(){
         return $this->hasMany('App\Models\RegisterPelayanan');
     }
+
+    public function costs(){
+        return $this->belongsToMany('App\Models\Jasa');
+    }
 }

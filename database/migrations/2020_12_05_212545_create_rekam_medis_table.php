@@ -21,12 +21,13 @@ class CreateRekamMedisTable extends Migration
             $table->string('diagnosa');
             $table->string('keluhan');
             $table->text('anamnesis')->nullable();
-            $table->string('tindakan', 150);
+            $table->string('tindakan')->nullable();
             $table->text('keterangan')->nullable();
             $table->boolean('alergi_obat', 1)->default('0');
             $table->string('berat_badan', 8);
             $table->string('tinggi_badan', 8);
             $table->string('tensi', 7);
+            $table->text('resep');
             $table->timestamps();
         });
     }

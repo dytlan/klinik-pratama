@@ -30,6 +30,7 @@ class KategoriObatSeeder extends Seeder
                     'kandungan'         => $faker->realText,
                     'harga'             => $faker->numberBetween(1000,5000000),
                     'jumlah'            => $faker->numberBetween(0,500),
+                    'satuan'            => $faker->randomElement(['bar','tablet','kapsul', 'botol'])
                 ]);
             }
         }

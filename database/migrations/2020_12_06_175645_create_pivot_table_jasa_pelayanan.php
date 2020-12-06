@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateObatsTable extends Migration
+class CreatePivotTableJasaPelayanan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateObatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('obat', function (Blueprint $table) {
+        Schema::create('jasa_pelayanan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama', 150);
-            $table->text('kandungan');
-            $table->tinyInteger('kategori_obat_id')->unsigned();
-            $table->integer('harga');
-            $table->integer('jumlah');
-            $table->string('satuan',10);
+            $table->tinyInteger('jasa_id')->unsigned();
+            $table->tinyInteger('pelayanan_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateObatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('obat');
+        Schema::dropIfExists('jasa_pelayanan');
     }
 }

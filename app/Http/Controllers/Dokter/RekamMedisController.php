@@ -32,7 +32,7 @@ class RekamMedisController extends Controller
     {
         $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
         $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
-        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->orderByDesc('created_at')->get();
+        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->where('pelayanan_id', $registerPelayanan->pelayanan_id)->orderByDesc('created_at')->get();
 
         return view('pages.dokter.periksa-pasien.create', compact('records', 'patient'));
     }
