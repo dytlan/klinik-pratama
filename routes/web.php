@@ -83,13 +83,13 @@ Route::group(['prefix' => '/bidan', 'middleware' => ['auth', 'isBidan']], functi
 | Apoteker Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => '/apoteker', 'middleware' => ['auth', 'isApoteker']], function () {
+Route::group(['prefix' => '/apoteker', 'middleware' => ['auth', 'isApoteker'], 'namespace' => 'Apoteker'], function () {
     Route::get('/', function () {
         return view('pages.apoteker.dashboard');
     })->name('apoteker');
-
-    Route::resource('/obat/kategori', 'Apoteker\KategoriObatController');
-    Route::resource('/data-obat', 'Apoteker\ObatController');
+    Route::get('/antrian', 'AntrianController@antrian')->name('apoteker.periksa.antrian');
+    Route::resource('/obat/kategori', 'KategoriObatController');
+    Route::resource('/data-obat', 'ObatController');
 });
 
 Auth::routes();

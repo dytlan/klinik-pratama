@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\RegisterPelayanan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RegisterPelayananSeeder::class);
         $this->call(JasaSeeder::class);
         $this->call(JasaPelayananSeeder::class);
+        $this->call(TransaksiObatSeeder::class);
     }
 }

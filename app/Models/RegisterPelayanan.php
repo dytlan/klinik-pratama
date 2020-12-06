@@ -21,4 +21,8 @@ class RegisterPelayanan extends Model
     public function record(){
         return $this->hasOne('App\Models\RekamMedis');
     }
+
+    public function transactions(){
+        return $this->hasMany('App\Models\TransaksiObat');
+    }
 }
