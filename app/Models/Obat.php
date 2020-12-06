@@ -9,7 +9,7 @@ class Obat extends Model
     protected $table = 'obat';
 
     protected $fillable = [
-        'nama', 'kandungan', 'kategori_obat_id', 'harga', 'jumlah'
+        'nama', 'kandungan', 'kategori_obat_id', 'harga', 'jumlah', 'satuan'
     ];
 
     public function category(){
