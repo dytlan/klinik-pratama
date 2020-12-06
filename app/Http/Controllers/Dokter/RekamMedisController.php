@@ -34,7 +34,7 @@ class RekamMedisController extends Controller
         $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
         $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->where('pelayanan_id', $registerPelayanan->pelayanan_id)->orderByDesc('created_at')->get();
 
-        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient'));
+        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan'));
     }
 
     /**
@@ -64,8 +64,7 @@ class RekamMedisController extends Controller
             'tensi'         => $request->tensi,
         ]);
 
-        return redirect()->back();
-        
+        return redirect()->route('periksa-pasien')->with('toast_success', 'Data berhasil dibuat');
     }
 
     /**

@@ -59,7 +59,7 @@
        @elseif(Auth::user()->role_id === 3)
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{ route('dokter') }}"><span>DOKTER</span>
+            <a href="{{ route('dokter') }}"><span>DOKTER/BIDAN</span>
             </a>
           </div>
           <ul class="sidebar-menu">
@@ -68,6 +68,9 @@
             </li>
             <li class="dropdown {{(request()->is('dokter/antrian*')) ? 'active' : ""}}">
               <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-users"></i><span>Periksa Pasien</span></a>
+            </li>
+            <li class="dropdown {{(request()->is('dokte')) ? 'active' : ""}}">
+              <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-users"></i><span>Data Rekam Medis</span></a>
             </li>
           
             {{-- <li class="dropdown">

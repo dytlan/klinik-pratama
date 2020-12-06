@@ -2,6 +2,12 @@
 @section('title','Registrasi Pelayanan')
 @section('content')
     <section class="section">
+        <div class="row">
+            <nav class="breadcrumb bg-transparent">
+                <a class="breadcrumb-item" href="{{ route('pelayanan.show',$service->id) }}">Kembali</a>
+                <span class="breadcrumb-item active">{{ $service->nama }}</span>
+            </nav>
+        </div>
         <div class="row mb-2">
            <div class="col">
               <h6>Silahkan isi form dibawah</h6>
