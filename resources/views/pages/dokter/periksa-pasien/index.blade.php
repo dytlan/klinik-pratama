@@ -13,7 +13,7 @@
                         @forelse ($ongoingAntrian as $antrian)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{ $antrian->patient->nama }} / No Antrian ({{ $antrian->kode }}-{{ $antrian->antrian }})
-                                <span><a href="{{ route('pasien.create',$antrian->id) }}" class="btn btn-primary btn-sm">Periksa</a></span>
+                                <span><a href="{{ route('create-rekam-medis',$antrian->id) }}" class="btn btn-primary btn-sm">Periksa</a></span>
                             </li>
                         @empty 
                             <li class="list-group-item text-center">

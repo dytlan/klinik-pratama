@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Models\RegisterPelayanan;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
@@ -26,10 +27,10 @@ class RekamMedisController extends Controller
     public function create($registPelayananId)
     {
         $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
-
+        $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
         $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->orderByDesc('created_at')->get();
 
-        return view('pages.dokter.periksa-pasien.create');
+        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient'));
     }
 
     /**

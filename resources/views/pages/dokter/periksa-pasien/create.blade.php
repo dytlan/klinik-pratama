@@ -13,6 +13,49 @@
     </div>
 
     <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4>Rekam Medis Pasien {{ $patient->nama}}</h4>
+            </div>
+            <div class="card-body">
+            <div id="accordion">
+                <div class="accordion">
+                    <div class="accordion-header" role="button" data-toggle="collapse" data-target="#data-rekam-medis">
+                        <h4>Lihat Data</h4>
+                    </div>
+                    <div class="accordion-body collapse" id="data-rekam-medis" data-parent="#accordion">
+                         <div class="table-responsive">
+                      <table class="table table-striped table-hover" id="tableRecord" style="width:100%;">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Diagnosa</th>
+                            <th>Keluhan</th>
+                            <th>Tanggal Berobat</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($records as $record)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $record->diagnosa }}</td>
+                            <td>{{ $record->keluhan }}</td>
+                            <td>{{ $record->created_at->format('d-m-Y')}}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -117,18 +160,8 @@
                    </div>
                </div>
                  <div class="row">
-                   <div class="col-md-6">
-                        <div class="form-group">
-                            <label >Tindakan</label>
-                            <input type="text" class="form-control @error('tindakan') is-invalid @enderror" name="tindakan" required placeholder="Masukkan Tindakan" value="{{ old('tindakan') }}">
-                            @error('tindakan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                   </div>
-                   <div class="col-md-6">
+                 
+                   <div class="col-12">
                         <div class="form-group">
                             <label >Keterangan</label>
                            <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" style="height: 100px !important" required>{{ old('keterangan') }}</textarea>
@@ -144,10 +177,10 @@
                   <div class="row">
                    <div class="col-12">
                        <div class="form-group">
-                           <label>Resep</label>
-                           <textarea name="anamnesis" class="form-control" style="height: 150px !important">{{ old('anamnesis') }}</textarea>
+                           <label>Tindakan</label>
+                           <textarea name="tindakan" class="form-control" style="height: 150px !important">{{ old('tindakan') }}</textarea>
                             <small class="text-danger">
-                                Kosongkan Jika Tidak Ingin Buat Resep
+                                Kosongkan Jika Tidak Perlu
                             </small>
                        </div>
                    </div>
@@ -165,3 +198,20 @@
     </div>
 </section>
 @endsection
+
+@push('addon-style')
+    <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+@endpush
+
+@push('addon-script')
+     <!-- Page Specific JS File -->
+  <script src="{{ asset('assets/bundles/datatables/datatables.min.js') }}"></script>
+  <script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+
+  <script>
+    $('#tableRecord').DataTable({
+       
+    });
+  </script>
+@endpush

@@ -23,8 +23,8 @@ class RegisterPelayananController extends Controller
         $service = Pelayanan::select('id', 'nama')->whereId($pelayananId)->first();
         $day = now()->locale('id')->dayName;
         $time = now()->addMinute(15)->toTimeString();
-        // $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
-        $schedules = $service->schedules()->get();
+        $schedules = $service->schedules()->where('hari', $day)->where('sampai', '>=', $time)->get();
+        // $schedules = $service->schedules()->get();
 
         return view('pages.resepsionis.register-pelayanan.create', compact('pelayananId', 'schedules', 'service'));
     }
@@ -55,7 +55,7 @@ class RegisterPelayananController extends Controller
 
         $antrian = $this->generateAntrian($service, $request);
 
-        $service->registrations()->create([
+        $data = $service->registrations()->create([
             'patient_id'            => $request->patient_id,
             'jadwal_praktek_id'     => $request->jadwal_praktek_id,
             'hari'                  => now(),
@@ -64,7 +64,9 @@ class RegisterPelayananController extends Controller
             'pelayanan_id'          => $pelayananId
         ]);
 
-        return redirect()->route('pelayanan.show', $pelayananId)->with('nomor_antrian', alert()->info('Nomor Antrian', $antrian['kode'] . '-' . $antrian['nomor'])->autoClose(false));
+
+
+        return redirect()->route('pelayanan.show', $pelayananId)->with('nomor_antrian', alert()->info('Nomor Antrian: ' . $antrian['kode'] . '-' . $antrian['nomor'],  'Ruangan : ' . $data->schedule->ruangan)->autoClose(false));
     }
 
     function generateAntrian($service, $request)
