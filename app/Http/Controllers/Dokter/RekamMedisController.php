@@ -69,6 +69,16 @@ class RekamMedisController extends Controller
             'resep'         => $request->resep ?? '-'
         ]);
 
+        if(!$request->resep){
+            $registAntrian->update([
+                'status' => 'resepsionis'
+            ]);
+        } else {
+            $registAntrian->update([
+                'status' => 'apoteker'
+            ]);
+        }
+
         return redirect()->route('periksa-pasien')->with('toast_success', 'Data berhasil dibuat');
     }
 
