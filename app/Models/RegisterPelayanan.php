@@ -17,4 +17,8 @@ class RegisterPelayanan extends Model
     public function schedule(){
         return $this->belongsTo('App\Models\JadwalPraktek', 'jadwal_praktek_id');
     }
+
+    public function record(){
+        return $this->hasOne('App\Models\RekamMedis');
+    }
 }

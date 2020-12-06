@@ -54,19 +54,20 @@ class RekamMedisController extends Controller
         $registAntrian = RegisterPelayanan::FindOrFail($registerId);
 
         RekamMedis::create([
-            'patient_id'    => $registAntrian->patient_id,
-            'dokter_id'     => $userId,
-            'pelayanan_id'  => $registAntrian->pelayanan_id,
-            'diagnosa'      => $request->diagnosa,
-            'keluhan'       => $request->keluhan,
-            'anamnesis'     => $request->anamnesis ?? '-',
-            'tindakan'      => $request->tindakan,
-            'keterangan'    => $request->keterangan ?? '-',
-            'alergi_obat'   => $request->alergi_obat,
-            'berat_badan'   => $request->berat_badan,
-            'tinggi_badan'  => $request->tinggi_badan,
-            'tensi'         => $request->tensi,
-            'resep'         => $request->resep ?? '-'
+            'patient_id'            => $registAntrian->patient_id,
+            'dokter_id'             => $userId,
+            'pelayanan_id'          => $registAntrian->pelayanan_id,
+            'diagnosa'              => $request->diagnosa,
+            'keluhan'               => $request->keluhan,
+            'anamnesis'             => $request->anamnesis ?? '-',
+            'tindakan'              => $request->tindakan,
+            'keterangan'            => $request->keterangan ?? '-',
+            'alergi_obat'           => $request->alergi_obat,
+            'berat_badan'           => $request->berat_badan,
+            'tinggi_badan'          => $request->tinggi_badan,
+            'tensi'                 => $request->tensi,
+            'resep'                 => $request->resep ?? '-',
+            'register_pelayanan_id' => $registAntrian->id
         ]);
 
         if(!$request->resep){

@@ -12,7 +12,8 @@ class RekamMedis extends Model
         'patient_id', 'dokter_id', 'pelayanan_id',
         'diagnosa', 'keluhan', 'anamnesis', 
         'tindakan', 'keterangan', 'alergi_obat',
-        'berat_badan', 'tinggi_badan', 'tensi'
+        'berat_badan', 'tinggi_badan', 'tensi',
+        'register_pelayanan_id'
     ];
 
     public function patient(){
