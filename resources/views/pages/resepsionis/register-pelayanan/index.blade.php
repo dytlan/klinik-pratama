@@ -11,7 +11,7 @@
           @foreach ($services as $service)
               <div class="col-6 col-md-4">
                 <a href="{{route('pelayanan.show',['pelayanan' => $service->id])}}" class="text-decoration-none text-black-50">
-                  <div class="card">
+                  <div class="card card-pelayanan">
                   <div class="card-body">
                     <h6>{{ $service->nama }}</h6>
                   </div>

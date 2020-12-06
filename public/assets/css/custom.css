@@ -6,4 +6,7 @@
 }
 
 
+.card.card-pelayanan:hover {
+    box-shadow: 3px 3px 8px #6610f2 !important;
+}
 /*# sourceMappingURL=custom.css.map */

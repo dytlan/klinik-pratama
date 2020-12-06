@@ -62,7 +62,7 @@
             <h4>Silahkan Isi Data Rekam Medis</h4>
             </div>
             <div class="card-body">
-            <form action="{{ route('user.store') }}" method="post">
+            <form action="{{ route('rekam.medis.store',$registerPelayanan->id) }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-3">
@@ -155,7 +155,7 @@
                    <div class="col-12">
                        <div class="form-group">
                            <label>Anamnesis</label>
-                           <textarea name="anamnesis" class="form-control @error('anamnesis') is-invalid @enderror" style="height: 100px !important" required>{{ old('anamnesis') }}</textarea>
+                           <textarea name="anamnesis" class="form-control @error('anamnesis') is-invalid @enderror" style="height: 100px !important">{{ old('anamnesis') }}</textarea>
                        </div>
                    </div>
                </div>
@@ -164,7 +164,7 @@
                    <div class="col-12">
                         <div class="form-group">
                             <label >Keterangan</label>
-                           <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" style="height: 100px !important" required>{{ old('keterangan') }}</textarea>
+                           <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" style="height: 100px !important">{{ old('keterangan') }}</textarea>
                             @error('keterangan')
                             <div class="invalid-feedback">
                                 {{ $message }}
