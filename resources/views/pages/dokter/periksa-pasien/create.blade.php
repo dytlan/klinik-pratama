@@ -173,12 +173,20 @@
                         </div>
                    </div>
                </div>
-               <hr>
-                  <div class="row">
+               <div class="row">
                    <div class="col-12">
                        <div class="form-group">
                            <label>Tindakan</label>
                            <textarea name="tindakan" class="form-control" style="height: 150px !important">{{ old('tindakan') }}</textarea>
+                       </div>
+                   </div>
+               </div>
+               <hr>
+                  <div class="row">
+                   <div class="col-12">
+                       <div class="form-group">
+                           <label>Buat Resep</label>
+                           <textarea name="resep" class="form-control" style="height: 150px !important">{{ old('resep') }}</textarea>
                             <small class="text-danger">
                                 Kosongkan Jika Tidak Perlu
                             </small>

@@ -35,7 +35,7 @@ class RekamMedisController extends Controller
         $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
         $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->where('pelayanan_id', $registerPelayanan->pelayanan_id)->orderByDesc('created_at')->get();
 
-        $service = Pelayanan::FindOrFail($$registerPelayanan->pelayanan_id);
+        $service = Pelayanan::FindOrFail($registerPelayanan->pelayanan_id);
         $jasa = $service->costs()->get();
 
         return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan'));
@@ -70,7 +70,7 @@ class RekamMedisController extends Controller
             'register_pelayanan_id' => $registAntrian->id
         ]);
 
-        if(!$request->resep){
+        if (!$request->resep) {
             $registAntrian->update([
                 'status' => 'resepsionis'
             ]);
