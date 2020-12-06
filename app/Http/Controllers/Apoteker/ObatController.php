@@ -106,7 +106,7 @@ class ObatController extends Controller
     }
 
     public function fetch(){
-        $medicines = Obat::all();
+        $medicines = Obat::where('quantity','>', 10)->get();
 
         return response()->json($medicines,200);
     }
