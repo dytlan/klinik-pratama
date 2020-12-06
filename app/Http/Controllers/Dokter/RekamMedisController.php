@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Patient;
+use App\Models\Pelayanan;
 use App\Models\RegisterPelayanan;
 use App\Models\RekamMedis;
 
@@ -33,6 +34,9 @@ class RekamMedisController extends Controller
         $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
         $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
         $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->where('pelayanan_id', $registerPelayanan->pelayanan_id)->orderByDesc('created_at')->get();
+
+        $service = Pelayanan::FindOrFail($$registerPelayanan->pelayanan_id);
+        $jasa = $service->costs()->get();
 
         return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan'));
     }
@@ -62,6 +66,7 @@ class RekamMedisController extends Controller
             'berat_badan'   => $request->berat_badan,
             'tinggi_badan'  => $request->tinggi_badan,
             'tensi'         => $request->tensi,
+            'resep'         => $request->resep ?? '-'
         ]);
 
         return redirect()->route('periksa-pasien')->with('toast_success', 'Data berhasil dibuat');
