@@ -18,5 +18,6 @@ class AntrianController extends Controller
 
         $doneAntrian = RegisterPelayanan::where('created_at', 'like', $date . '%')->where('status', 'resepsionis')->orderBy('antrian')->get();
 
+        return view('pages.apoteker.permintaan-resep.index', compact('ongoingAntrian', 'doneAntrian'));
     }
 }

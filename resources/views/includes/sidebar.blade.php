@@ -1,5 +1,5 @@
 <div class="main-sidebar sidebar-style-2">
-      @if (Auth::user()->role_id === 1)
+      @if (Auth::user()->role->nama === 'admin')
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="{{ route('admin') }}"><span>ADMIN</span>
@@ -27,7 +27,7 @@
          
           </ul>
        </aside>
-       @elseif(Auth::user()->role_id === 2)
+       @elseif(Auth::user()->role->nama === 'resepsionis')
          <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="{{ route('resepsionis') }}"><span>RESEPSIONIS</span>
@@ -56,7 +56,7 @@
          
           </ul>
        </aside>
-       @elseif(Auth::user()->role_id === 3)
+      @elseif(Auth::user()->role->nama === 'dokter' || Auth::user()->role->nama === 'bidan')
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="{{ route('dokter') }}"><span>DOKTER/BIDAN</span>
@@ -85,7 +85,7 @@
          
           </ul>
        </aside>
-       @elseif(Auth::user()->role_id === 4)
+       @elseif(Auth::user()->role->nama === 'apoteker')
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="{{ route('admin') }}"><span>APOTEKER</span>
@@ -95,8 +95,8 @@
             <li class="dropdown {{(request()->is('apoteker')) ? 'active' : ""}}">
               <a href="{{ route('apoteker') }}" class="nav-link "><i class="fas fa-desktop"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown {{(request()->is('admin/user*')) ? 'active' : ""}} ">
-              <a href="{{ route('user.index') }}" class="nav-link  "><i class="fas fa-file-medical-alt"></i><span>Permintaan Resep</span></a>
+            <li class="dropdown {{(request()->is('apoteker/permintaan-resep*')) ? 'active' : ""}} ">
+              <a href="{{ route('permintaan-resep') }}" class="nav-link  "><i class="fas fa-file-medical-alt"></i><span>Permintaan Resep</span></a>
             </li>
             <li class="dropdown {{(request()->is('apoteker/data-obat*')) ? 'active' : ""}}">
               <a href="{{ route('data-obat.index') }}" class="nav-link "><i class="fas fa-medkit"></i><span>Kelola Data Obat</span></a>
@@ -117,28 +117,6 @@
           </ul>
        </aside>
 
-       @elseif(Auth::user()->role_id === 5)
-        <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="{{ route('bidan') }}"><span>Bidan</span>
-            </a>
-          </div>
-          <ul class="sidebar-menu">
-            <li class="dropdown {{(request()->is('bidan')) ? 'active' : ""}}">
-              <a href="{{ route('bidan') }}" class="nav-link "><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-            </li>
-          
-            {{-- <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="users"></i><span>Widgets</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
-                <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
-              </ul>
-            </li> --}}
-           
-         
-          </ul>
-       </aside>
+   
       @endif
 </div>

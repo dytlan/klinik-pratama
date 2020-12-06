@@ -87,7 +87,7 @@ Route::group(['prefix' => '/apoteker', 'middleware' => ['auth', 'isApoteker'], '
     Route::get('/', function () {
         return view('pages.apoteker.dashboard');
     })->name('apoteker');
-    Route::get('/antrian', 'AntrianController@antrian')->name('apoteker.periksa.antrian');
+    Route::get('/permintaan-resep', 'AntrianController@antrian')->name('permintaan-resep');
     Route::resource('/obat/kategori', 'KategoriObatController');
     Route::resource('/data-obat', 'ObatController');
 });
