@@ -21,6 +21,11 @@ class RekamMedis extends Model
         return $this->belongsTo('App\Models\Patient');
     }
 
+    public function register()
+    {
+        return $this->belongsTo('App\Models\RegisterPelayanan', 'register_pelayanan_id');
+    }
+
     public function dokter()
     {
         return $this->belongsTo('App\Models\User', 'dokter_id');

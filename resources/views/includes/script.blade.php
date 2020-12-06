@@ -1,4 +1,5 @@
   <!-- General JS Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('assets/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
  
