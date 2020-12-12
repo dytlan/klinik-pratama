@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/obat','Apoteker\ObatController@fetch');
+
+Route::post('/transaksi/obat/{pelayanan}', 'Apoteker\TransaksiObatController@store');

@@ -29,6 +29,8 @@ class RekamMedisSeeder extends Seeder
                 'alergi_obat' => $faker->numberBetween(0,1),
                 'berat_badan' => $faker->numberBetween(40,120),
                 'tinggi_badan' => $faker->numberBetween(140,210),
+                'resep' => $faker->randomElement(['-','resep apa aja dah']),
+                'register_pelayanan_id' => $faker->unique()->numberBetween(1,50),
                 'tensi' => $faker->numberBetween(100,130) .'/'.$faker->numberBetween(30,90)
             ]);
         }

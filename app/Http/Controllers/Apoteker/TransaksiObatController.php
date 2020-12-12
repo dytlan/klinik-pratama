@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Apoteker;
 
 use App\Http\Controllers\Controller;
-use App\Models\Obat;
+use App\Models\RegisterPelayanan;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiObatController extends Controller
 {
@@ -37,9 +38,18 @@ class TransaksiObatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $registerPelayananId)
     {
-        //
+        $register = RegisterPelayanan::FindOrFail($registerPelayananId);
+        foreach($request->medicines as $medicine){
+            $register->transactions()->create([
+                'obat_id'       => $medicine['obat_id'],
+                'quantity'      => $medicine['quantity'],
+                'apoteker_id'   => $request->user_id
+            ]);
+        }
+
+        return response()->json(['message' => 'stored successfull'],201);  
     }
 
     /**
