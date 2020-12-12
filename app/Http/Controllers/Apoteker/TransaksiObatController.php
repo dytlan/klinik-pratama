@@ -49,6 +49,10 @@ class TransaksiObatController extends Controller
             ]);
         }
 
+        $register->update([
+            'status' => 'resepsionis'
+        ]);
+
         return response()->json(['message' => 'stored successfull'],201);  
     }
 
