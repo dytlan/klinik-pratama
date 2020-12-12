@@ -46,9 +46,14 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $registerPelayananId)
     {
-        //
+        if($request->payment == 1){
+            $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+            $regist->update([
+                'status' => 'selesai'
+            ]);
+        } 
     }
 
     /**
