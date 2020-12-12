@@ -11,4 +11,8 @@ class TransaksiJasa extends Model
     protected $fillable = [
         'register_pelayanan_id', 'jasa_id'
     ];
+
+    public function service(){
+        return $this->belongsTo('App\Models\Jasa');
+    }
 }
