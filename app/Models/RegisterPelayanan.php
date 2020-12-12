@@ -25,4 +25,8 @@ class RegisterPelayanan extends Model
     public function transactions(){
         return $this->hasMany('App\Models\TransaksiObat');
     }
+
+    public function services(){
+        return $this->hasMany('App\Models\TransaksiJasa');
+    }
 }

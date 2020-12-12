@@ -49,7 +49,6 @@ class RekamMedisController extends Controller
      */
     public function store(RekamMedisValidation $request, $registerId)
     {
-        dd($request->jasa);
         $request->validated();
         $userId = Auth::id();
         $registAntrian = RegisterPelayanan::FindOrFail($registerId);
@@ -70,6 +69,12 @@ class RekamMedisController extends Controller
             'resep'                 => $request->resep ?? '-',
             'register_pelayanan_id' => $registAntrian->id
         ]);
+
+        foreach($request->jasa as $jasa){
+            $registAntrian->services()->create([
+                'jasa_id' => $jasa
+            ]);
+        }
 
         if (!$request->resep) {
             $registAntrian->update([
