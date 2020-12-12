@@ -1993,6 +1993,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2002,7 +2009,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           obat_id: "",
           obatIdNull: false,
           quantity: "",
-          quantityNull: false
+          quantityNull: false,
+          quantityOver: false
         }]
       }
     };
@@ -2024,7 +2032,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var refreshData = this.data.medicals.map(function (val) {
         return _objectSpread(_objectSpread({}, val), {}, {
           obatIdNull: false,
-          quantityNull: false
+          quantityNull: false,
+          quantityOver: false
         });
       });
       this.data.medicals = refreshData; // set necessary variable
@@ -2032,6 +2041,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var errors = 0;
       this.data.medicals.forEach(function (val, index) {
+        var qty = _this2.data.medicines.filter(function (v) {
+          return v.id == val.obat_id;
+        });
+
         if (val.obat_id === "") {
           val.obatIdNull = true;
           errors += 1;
@@ -2039,6 +2052,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         if (val.quantity === "") {
           val.quantityNull = true;
+          errors += 1;
+        }
+
+        if (val.quantity > qty[0].jumlah) {
+          val.quantityOver = true;
           errors += 1;
         }
 
@@ -2070,7 +2088,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         obat_id: "",
         obatIdNull: false,
         quantity: "",
-        quantityNull: false
+        quantityNull: false,
+        quantityOver: false
       });
     },
     remove: function remove(index) {
@@ -24052,12 +24071,15 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control text-dark",
-                            class: medical.quantityNull ? "is-invalid" : "",
+                            class:
+                              medical.quantityNull || medical.quantityOver
+                                ? "is-invalid"
+                                : "",
                             attrs: {
                               placeholder: "Quantity",
                               type: "number",
                               name: "name",
-                              min: "0"
+                              min: "1"
                             },
                             domProps: { value: medical.quantity },
                             on: {
@@ -24072,7 +24094,27 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: medical.quantityOver,
+                                  expression: "medical.quantityOver"
+                                }
+                              ],
+                              staticClass: "text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Quantity melebihi stok yang tersedia\n                  "
+                              )
+                            ]
+                          )
                         ])
                       ]),
                       _vm._v(" "),

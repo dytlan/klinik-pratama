@@ -40,11 +40,18 @@
                       placeholder="Quantity"
                       type="number"
                       class="form-control text-dark"
-                      :class="medical.quantityNull ? 'is-invalid' : ''"
+                      :class="
+                        medical.quantityNull || medical.quantityOver
+                          ? 'is-invalid'
+                          : ''
+                      "
                       name="name"
-                      min="0"
+                      min="1"
                       v-model="medical.quantity"
                     />
+                    <div v-show="medical.quantityOver" class="text-danger">
+                      Quantity melebihi stok yang tersedia
+                    </div>
                   </div>
                 </div>
 
@@ -89,6 +96,7 @@ export default {
             obatIdNull: false,
             quantity: "",
             quantityNull: false,
+            quantityOver: false,
           },
         ],
       },
@@ -112,6 +120,7 @@ export default {
           ...val,
           obatIdNull: false,
           quantityNull: false,
+          quantityOver: false,
         };
       });
       this.data.medicals = refreshData;
@@ -122,6 +131,10 @@ export default {
 
       let errors = 0;
       this.data.medicals.forEach((val, index) => {
+        const qty = this.data.medicines.filter((v) => {
+          return v.id == val.obat_id;
+        });
+
         if (val.obat_id === "") {
           val.obatIdNull = true;
           errors += 1;
@@ -130,6 +143,11 @@ export default {
           val.quantityNull = true;
           errors += 1;
         }
+        if (val.quantity > qty[0].jumlah) {
+          val.quantityOver = true;
+          errors += 1;
+        }
+
         if (errors === 0 && index === this.data.medicals.length - 1) {
           let dataMedicals = this.data.medicals;
           const postData = {
@@ -161,6 +179,7 @@ export default {
         obatIdNull: false,
         quantity: "",
         quantityNull: false,
+        quantityOver: false,
       });
     },
     remove(index) {

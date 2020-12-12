@@ -105,9 +105,10 @@ class ObatController extends Controller
         Obat::destroy($id);
     }
 
-    public function fetch(){
-        $medicines = Obat::where('quantity','>', 10)->get();
+    public function fetch()
+    {
+        $medicines = Obat::where('jumlah', '>', 1)->get();
 
-        return response()->json($medicines,200);
+        return response()->json($medicines, 200);
     }
 }
