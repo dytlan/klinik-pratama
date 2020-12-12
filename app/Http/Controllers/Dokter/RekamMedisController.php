@@ -38,7 +38,7 @@ class RekamMedisController extends Controller
         $service = Pelayanan::FindOrFail($registerPelayanan->pelayanan_id);
         $jasa = $service->costs()->get();
 
-        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan'));
+        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan', 'jasa'));
     }
 
     /**
@@ -49,6 +49,7 @@ class RekamMedisController extends Controller
      */
     public function store(RekamMedisValidation $request, $registerId)
     {
+        dd($request->jasa);
         $request->validated();
         $userId = Auth::id();
         $registAntrian = RegisterPelayanan::FindOrFail($registerId);

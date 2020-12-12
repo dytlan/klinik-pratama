@@ -193,6 +193,17 @@
                        </div>
                    </div>
                </div>
+               <div class="row mb-5">
+                   <div class="col-12">
+                       @foreach ($jasa as $jenis_jasa)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" {{ $jenis_jasa->id == 13 ? 'checked' : '' }} name="jasa[]" type="checkbox" id="{{ $jenis_jasa->id }}" value="{{ $jenis_jasa->id }}">
+                            <label class="form-check-label" for="{{ $jenis_jasa->id }}">{{ $jenis_jasa->nama }}</label>
+                        </div>
+                       @endforeach
+                   </div>
+               </div>
+               
                <div class="row">
                    <div class="col-6 offset-3">
                        <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Pastikan Data Sudah Benar')">Simpan</button>
