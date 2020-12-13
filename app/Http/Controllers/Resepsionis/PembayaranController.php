@@ -19,26 +19,29 @@ class PembayaranController extends Controller
 
         $mappingRegister = $registers->map(function($item){
             $subTotal = 0;
-            $item->medicines = $item->transactions->map(function($item){
+            $medicines = $item->transactions->map(function($item){
                 $item->name = $item->medicine->nama;
                 $item->total_harga = $item->quantity * $item->medicine->harga;
                 return $item;
             });
 
-            $item->services = $item->services->map(function($item){
+            $services = $item->services->map(function($item){
                 $item->name = $item->service->nama;
                 $item->total_harga = $item->service->harga;
                 return $item;
             });
 
-            foreach($item->medicines as $medicine){
+            foreach($medicines as $medicine){
                 $subTotal = $subTotal + $medicine->total_harga;
             }
 
-            foreach($item->services as $service){
+            foreach($services as $service){
                 $subTotal = $subTotal + $service->total_harga;
             }
 
+            $item->nama_pasien = $item->patient->name;
+            $item->jenis_pelayanan = $item->schedule->pelayanan->nama;
+            $item->nama_dokter = $item->schedule->user->nama;
             $item->sub_total = $subTotal;
 
             return $item;
