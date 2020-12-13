@@ -28,7 +28,9 @@ class PelayananController extends Controller
      */
     public function show($id)
     {
-        $registrations = Pelayanan::FindOrFail($id);
+        $registrations = Pelayanan::whereHas('registrations', function($item){
+            $item->orderBy('created_at', 'desc');
+        })->where('id', $id)->first();
         return view('pages.resepsionis.register-pelayanan.show', compact('registrations'));
     }
 }
