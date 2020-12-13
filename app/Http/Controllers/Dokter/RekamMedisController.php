@@ -22,6 +22,7 @@ class RekamMedisController extends Controller
      */
     public function index()
     {
+        $records = RekamMedis::orderByDesc('created_at')->get();
     }
 
     /**

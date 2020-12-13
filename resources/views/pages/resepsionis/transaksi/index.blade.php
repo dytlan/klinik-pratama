@@ -12,13 +12,13 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Daftar Semua Transaksi Yang Sudah Selesai/h4>
+                    <h4>Daftar Semua Transaksi Yang Sudah Selesai</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-striped table-hover" id="tableTransaksi" style="width:100%;">
                         <thead>
-                          <tr class="text-center">
+                          <tr class="">
                      
                             <th>#</th>
                             <th>ID Pendaftaran</th>
@@ -31,19 +31,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                        @foreach ($registrations->registrations as $regist)
-                        <tr class="text-center">
+                        @foreach ($registers as $register)
+                        <tr class="">
                       
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ ucwords($regist->patient->nama) }}</td>
-                            <td>{{ $regist->kode.'-'.$regist->antrian }}</td>
-                            <td>{{ $regist->schedule->user->nama }}</td>
-                            <td>{{ ucwords($regist->status) }}</td>
-                            <td>{{ $regist->created_at->format('d-m-Y')}}</td>
+                            <td >{{ $register->id }}</td>
+                            <td>{{ $register->patient->nama }}</td>
+                            <td>{{ $register->jenis_pelayanan }}</td>
+                            <td>{{ $register->schedule->user->nama }}</td>
+                            <td>{{ $register->created_at->format('d-m-Y')}}</td>
+                            <td>Rp. {{ number_format($register->sub_total) }}</td>
                             <td>
                             <div class="d-flex pl-2">
-                                <a href="#" class="btn btn-warning btn-sm icon-left btn-icon mr-2">
-                                    <i class="fas fa-file-invoice"></i> Lihat Invoice
+                                <a data-toggle="tooltip" data-original-title="Lihat Invoice" href="{{ route('transaksi.show',$register->id) }}" class="btn btn-primary btn-sm  btn-icon">
+                                    <i class="fas fa-file-invoice"></i> 
                                 </a>
                             
                             </div>
@@ -77,7 +78,13 @@
 
   <script>
     $('#tableTransaksi').DataTable({
-        "order":[]
+        "order":[],
+        'columnDefs': [
+                {
+                    "targets": 1,
+                    "width": "5%"
+                },
+        ],
     });
   </script>
 @endpush
