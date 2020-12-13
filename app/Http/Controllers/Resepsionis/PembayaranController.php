@@ -39,10 +39,13 @@ class PembayaranController extends Controller
             return $item;
         });
 
+        foreach($mappingService as $service){
+            $merge = $mappingMedicine->push($service);
+        }
+    
         return view('pages.resepsionis.pembayaran.invoice', [
             'regist'    => $regist,
-            'medicines' => $mappingMedicine,
-            'services'  => $mappingService
+            'data' => $merge
         ]);
     }
 
