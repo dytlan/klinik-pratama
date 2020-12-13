@@ -93,7 +93,7 @@
                         <hr class="mt-1 mb-2">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Sub Total</div>
-                          <div class="invoice-detail-value invoice-detail-value-lg"></div>
+                          <div class="invoice-detail-value invoice-detail-value-lg">Rp. {{number_format($subTotal)}}</div>
                         </div>
                       </div>
                     </div>

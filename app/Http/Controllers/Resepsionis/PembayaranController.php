@@ -33,19 +33,27 @@ class PembayaranController extends Controller
             return $item;
         });
 
-
         $services = $regist->services()->get();
         $mappingService = $services->map(function ($item) {
             $item->total_harga = $item->service->biaya;
             return $item;
         });
 
+        $subTotal = 0;
 
+        foreach($mappingService as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
 
+        foreach($mappingMedicine as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
+    
         return view('pages.resepsionis.pembayaran.invoice', [
-            'regist'    => $regist,
-            'medicines' => $mappingMedicine,
-            'services'  => $mappingService
+            'regist'        => $regist,
+            'services'      => $mappingService,
+            'medicines'     => $mappingMedicine,
+            'subTotal'      => $subTotal
         ]);
     }
 
