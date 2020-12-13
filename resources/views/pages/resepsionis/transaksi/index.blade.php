@@ -21,11 +21,12 @@
                           <tr class="text-center">
                      
                             <th>#</th>
-                            <th>ID Transaksi</th>
+                            <th>ID Pendaftaran</th>
                             <th>Nama Pasien</th>
                             <th>Jenis Pelayanan</th>
                             <th>Dokter/Bidan</th>
                             <th>Tanggal Transaksi</th>
+                            <th>Total Biaya</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -76,7 +77,7 @@
 
   <script>
     $('#tableTransaksi').DataTable({
-    
+        "order":[]
     });
   </script>
 @endpush

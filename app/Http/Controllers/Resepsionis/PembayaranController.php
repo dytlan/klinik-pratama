@@ -15,27 +15,27 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $registers = RegisterPelayanan::where('status', 'selesai')->orderBy('created_at','desc')->get();
+        $registers = RegisterPelayanan::where('status', 'selesai')->orderBy('created_at', 'desc')->get();
 
-        $mappingRegister = $registers->map(function($item){
+        $mappingRegister = $registers->map(function ($item) {
             $subTotal = 0;
-            $item->medicines = $item->transactions->map(function($item){
+            $item->medicines = $item->transactions->map(function ($item) {
                 $item->name = $item->medicine->nama;
                 $item->total_harga = $item->quantity * $item->medicine->harga;
                 return $item;
             });
 
-            $item->services = $item->services->map(function($item){
+            $item->services = $item->services->map(function ($item) {
                 $item->name = $item->service->nama;
                 $item->total_harga = $item->service->harga;
                 return $item;
             });
 
-            foreach($item->medicines as $medicine){
+            foreach ($item->medicines as $medicine) {
                 $subTotal = $subTotal + $medicine->total_harga;
             }
 
-            foreach($item->services as $service){
+            foreach ($item->services as $service) {
                 $subTotal = $subTotal + $service->total_harga;
             }
 
@@ -44,7 +44,7 @@ class PembayaranController extends Controller
             return $item;
         });
 
-        dd($mappingRegister);
+        return view('pages.resepsionis.transaksi.index', compact('registers'));
     }
 
     /**
@@ -128,11 +128,11 @@ class PembayaranController extends Controller
 
         $subTotal = 0;
 
-        foreach($mappingService as $data){
+        foreach ($mappingService as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
 
-        foreach($mappingMedicine as $data){
+        foreach ($mappingMedicine as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
     }

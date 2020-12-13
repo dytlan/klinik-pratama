@@ -47,7 +47,7 @@
               <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-money-bill"></i><span>Pembayaran</span></a>
             </li>
             <li class="dropdown {{(request()->is('resepsionis/transaksi*')) ? 'active' : ""}}">
-              <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-check"></i><span>Transaksi Selesai</span></a>
+              <a href="{{ route('transaksi.index') }}" class="nav-link "><i class="fas fa-check"></i><span>Transaksi Selesai</span></a>
             </li>
           
             {{-- <li class="dropdown">
