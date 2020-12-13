@@ -15,7 +15,36 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        $registers = RegisterPelayanan::where('status', 'selesai')->orderBy('created_at','desc')->get();
+
+        $mappingRegister = $registers->map(function($item){
+            $subTotal = 0;
+            $item->medicines = $item->transactions->map(function($item){
+                $item->name = $item->medicine->nama;
+                $item->total_harga = $item->quantity * $item->medicine->harga;
+                return $item;
+            });
+
+            $item->services = $item->services->map(function($item){
+                $item->name = $item->service->nama;
+                $item->total_harga = $item->service->harga;
+                return $item;
+            });
+
+            foreach($item->medicines as $medicine){
+                $subTotal = $subTotal + $medicine->total_harga;
+            }
+
+            foreach($item->services as $service){
+                $subTotal = $subTotal + $service->total_harga;
+            }
+
+            $item->sub_total = $subTotal;
+
+            return $item;
+        });
+
+        dd($mappingRegister);
     }
 
     /**
@@ -81,9 +110,31 @@ class PembayaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($registerPelayananId)
     {
-        //
+        $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+
+        $medicines = $regist->transactions()->get();
+        $mappingMedicine = $medicines->map(function ($item) {
+            $item->total_harga =  $item->quantity * $item->medicine->harga;
+            return $item;
+        });
+
+        $services = $regist->services()->get();
+        $mappingService = $services->map(function ($item) {
+            $item->total_harga = $item->service->biaya;
+            return $item;
+        });
+
+        $subTotal = 0;
+
+        foreach($mappingService as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
+
+        foreach($mappingMedicine as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
     }
 
     /**
