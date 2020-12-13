@@ -35,7 +35,7 @@
                             </select>
                             @error('pelayanan_id')
                             <div class="invalid-feedback">
-                                {{ $message }}
+                                 Wajib Diisi
                             </div>
                             @enderror
                         </div>
@@ -81,7 +81,7 @@
                             <input type="text" required  class="form-control jamSelesai @error('sampai') is-invalid @enderror" name="sampai" placeholder="Pilih Jam Selesai"  value="{{ old('sampai') }}">
                             @error('sampai')
                             <div class="invalid-feedback">
-                                {{ $message }}
+                                 Wajib Diisi
                             </div>
                             @enderror
                         </div>
@@ -92,26 +92,34 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label >Nama Ruangan</label>
-                            <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" required placeholder="Masukkan Nama Ruangan" value="{{ old('ruangan') }}">
+                            <select class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" required>
+                                <option disabled selected>Silahkan Pilih Ruangan</option>
+                                <option value="Ruang Pemeriksaan Dokter Umum">Ruang Pemeriksaan Dokter Umum</option>
+                                <option value="Ruang Pemeriksaan Dokter Gigi">Ruang Pemeriksaan Dokter Gigi</option>
+                                <option value="Ruang Tindakan">Ruang Tindakan</option>
+                                <option value="Ruang Konsultasi">Ruang Konsultasi</option>
+                                <option value="Ruang Pemeriksaan Bidan">Ruang Pemeriksaan Bidan</option>
+                                <option value="Ruang Bersalin">Ruang Bersalin</option>
+                            </select>
                             @error('ruangan')
                             <div class="invalid-feedback">
-                                {{ $message }}
+                                 Wajib Diisi
                             </div>
                             @enderror
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label >Pilih Dokter</label>
+                            <label >Pilih Dokter / Bidan</label>
                             <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" required>
                                 <option disabled selected>Silahkan Pilih Dokter</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->nama }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->nama }} - {{ ucwords($user->role->nama) }}</option>
                                 @endforeach
                             </select>
                                 @error('user_id')
                             <div class="invalid-feedback">
-                                {{ $message }}
+                                Wajib Diisi
                             </div>
                             @enderror
                         </div>

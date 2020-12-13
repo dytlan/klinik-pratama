@@ -24,16 +24,22 @@ class JadwalValidation extends FormRequest
     public function rules()
     {
         return [
-            '*' => 'required',
+            'pelayanan_id' => 'required',
+            'hari' => 'required',
+            'mulai' => 'required',
+            'sampai' => 'required',
+            'ruangan' => 'required',
+            'user_id' => 'required',
         ];
     }
 
     /**
-    * Get the error messages for the defined validation rules.
-    *
-    * @return array
-    */
-    public function messages(){
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
         return [
             '*.required' => ':attribute wajib di isi.',
         ];

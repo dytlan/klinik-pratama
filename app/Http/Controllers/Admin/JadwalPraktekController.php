@@ -32,7 +32,7 @@ class JadwalPraktekController extends Controller
     public function create()
     {
         $users = User::whereHas('role', function ($query) {
-            $query->where('nama', 'dokter');
+            $query->where('nama', 'dokter')->orWhere('nama', 'bidan');
         })->get();
 
         $services = Pelayanan::all();
