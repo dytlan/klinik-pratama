@@ -108,9 +108,31 @@ class PembayaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($registerPelayananId)
     {
-        //
+        $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+
+        $medicines = $regist->transactions()->get();
+        $mappingMedicine = $medicines->map(function ($item) {
+            $item->total_harga =  $item->quantity * $item->medicine->harga;
+            return $item;
+        });
+
+        $services = $regist->services()->get();
+        $mappingService = $services->map(function ($item) {
+            $item->total_harga = $item->service->biaya;
+            return $item;
+        });
+
+        $subTotal = 0;
+
+        foreach($mappingService as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
+
+        foreach($mappingMedicine as $data){
+            $subTotal = $subTotal + $data->total_harga;
+        }
     }
 
     /**
