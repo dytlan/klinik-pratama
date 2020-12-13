@@ -29,5 +29,9 @@ Vue.component("tambah-resep", require("./components/TambahResep.vue").default);
 
 const app = new Vue({
     el: "#app",
-    data: {}
+    data: {
+        user_id: "",
+        register_pelayanan_id: "",
+        route_redirect_resep: ""
+    }
 });

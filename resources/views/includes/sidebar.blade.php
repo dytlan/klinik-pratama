@@ -43,6 +43,9 @@
             <li class="dropdown {{(request()->is('resepsionis/registrasi/pelayanan*')) ? 'active' : ""}}">
               <a href="{{ route('pelayanan.index') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
             </li>
+            <li class="dropdown {{(request()->is('resepsionis/pembayaran*')) ? 'active' : ""}}">
+              <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-money-bill"></i><span>Pembayaran</span></a>
+            </li>
           
             {{-- <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i

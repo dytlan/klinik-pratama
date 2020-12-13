@@ -48,8 +48,8 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
     Route::get('/registrasi/pelayanan/{pelayanan}/create', 'RegisterPelayananController@create')->name('register.pelayanan.create');
     Route::post('/registrasi/pelayanan/{pelayanan}', 'RegisterPelayananController@store')->name('register.pelayanan.store');
     Route::get('/pembayaran', 'AntrianController@antrian')->name('pembayaran.antrian');
-    Route::get('/pembayaran/{pelayanan}', 'PembayaranController@create');
-    Route::get('/pembayaran/{pelayanan}', 'PembayaranController@store');
+    Route::get('/pembayaran/{pelayanan}', 'PembayaranController@create')->name('pembayaran.invoice');
+    Route::post('/pembayaran/{pelayanan}', 'PembayaranController@store');
     Route::resource('/pasien', 'PatientController');
 });
 

@@ -86,6 +86,7 @@
 
 <script>
 export default {
+  props: ["route_redirect_resep", "register_pelayanan_id", "user_id"],
   data() {
     return {
       data: {
@@ -126,8 +127,9 @@ export default {
       this.data.medicals = refreshData;
 
       // set necessary variable
-
-      //   const route = this.route_strategy_detail;
+      const route = this.route_redirect_resep;
+      const pelayanan_id = this.register_pelayanan_id;
+      const userId = this.user_id;
 
       let errors = 0;
       this.data.medicals.forEach((val, index) => {
@@ -151,24 +153,25 @@ export default {
         if (errors === 0 && index === this.data.medicals.length - 1) {
           let dataMedicals = this.data.medicals;
           const postData = {
-            medicals: dataMedicals,
+            user_id: userId,
+            medicines: dataMedicals,
           };
-          //   axios
-          //     .post(`strategy/measure/${this.strategydetailid}`, postData)
-          //     .then(() => {
-          //       swal.fire({
-          //         position: "top-end",
-          //         icon: "success",
-          //         title: "Permintaan Resep Berhasil Dibuat",
-          //         showConfirmButton: false,
-          //         toast: true,
-          //         timer: 1500,
-          //       });
-          //       setTimeout(function () {
-          //         window.location.href = route;
-          //       }, 1500);
-          //     })
-          //     .catch((err) => console.log(err));
+          axios
+            .post(`transaksi/obat/${pelayanan_id}`, postData)
+            .then(() => {
+              swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Permintaan Resep Berhasil Dibuat",
+                showConfirmButton: false,
+                toast: true,
+                timer: 1500,
+              });
+              setTimeout(function () {
+                window.location.href = route;
+              }, 1500);
+            })
+            .catch((err) => console.log(err));
         }
       });
     },

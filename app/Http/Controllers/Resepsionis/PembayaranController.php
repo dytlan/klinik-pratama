@@ -28,16 +28,18 @@ class PembayaranController extends Controller
         $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
 
         $medicines = $regist->transactions()->get();
-        $mappingMedicine = $medicines->map(function($item){
+        $mappingMedicine = $medicines->map(function ($item) {
             $item->total_harga =  $item->quantity * $item->medicine->harga;
             return $item;
         });
 
         $services = $regist->services()->get();
-        $mappingService = $services->map(function($item){
+        $mappingService = $services->map(function ($item) {
             $item->total_harga = $item->service->biaya;
             return $item;
         });
+
+        return view('pages.resepsionis.pembayaran.invoice');
     }
 
     /**
@@ -48,12 +50,12 @@ class PembayaranController extends Controller
      */
     public function store(Request $request, $registerPelayananId)
     {
-        if($request->payment == 1){
+        if ($request->payment == 1) {
             $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
             $regist->update([
                 'status' => 'selesai'
             ]);
-        } 
+        }
     }
 
     /**

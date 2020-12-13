@@ -2001,6 +2001,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["route_redirect_resep", "register_pelayanan_id", "user_id"],
   data: function data() {
     return {
       data: {
@@ -2037,8 +2038,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
       this.data.medicals = refreshData; // set necessary variable
-      //   const route = this.route_strategy_detail;
 
+      var route = this.route_redirect_resep;
+      var pelayanan_id = this.register_pelayanan_id;
+      var userId = this.user_id;
       var errors = 0;
       this.data.medicals.forEach(function (val, index) {
         var qty = _this2.data.medicines.filter(function (v) {
@@ -2063,23 +2066,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (errors === 0 && index === _this2.data.medicals.length - 1) {
           var dataMedicals = _this2.data.medicals;
           var postData = {
-            medicals: dataMedicals
-          }; //   axios
-          //     .post(`strategy/measure/${this.strategydetailid}`, postData)
-          //     .then(() => {
-          //       swal.fire({
-          //         position: "top-end",
-          //         icon: "success",
-          //         title: "Permintaan Resep Berhasil Dibuat",
-          //         showConfirmButton: false,
-          //         toast: true,
-          //         timer: 1500,
-          //       });
-          //       setTimeout(function () {
-          //         window.location.href = route;
-          //       }, 1500);
-          //     })
-          //     .catch((err) => console.log(err));
+            user_id: userId,
+            medicines: dataMedicals
+          };
+          axios.post("transaksi/obat/".concat(pelayanan_id), postData).then(function () {
+            swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Permintaan Resep Berhasil Dibuat",
+              showConfirmButton: false,
+              toast: true,
+              timer: 1500
+            });
+            setTimeout(function () {
+              window.location.href = route;
+            }, 1500);
+          })["catch"](function (err) {
+            return console.log(err);
+          });
         }
       });
     },
@@ -36395,7 +36399,11 @@ Vue.component("tambah-resep", __webpack_require__(/*! ./components/TambahResep.v
 
 var app = new Vue({
   el: "#app",
-  data: {}
+  data: {
+    user_id: "",
+    register_pelayanan_id: "",
+    route_redirect_resep: ""
+  }
 });
 
 /***/ }),

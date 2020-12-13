@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <tambah-resep></tambah-resep>
+    <tambah-resep user_id={{ Auth::id() }} route_redirect_resep="{{ route('permintaan-resep') }}" register_pelayanan_id={{ $record->register_pelayanan_id }}></tambah-resep>
 
     </div>
 </section>
