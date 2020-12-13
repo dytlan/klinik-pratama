@@ -13,6 +13,6 @@ class TransaksiJasa extends Model
     ];
 
     public function service(){
-        return $this->belongsTo('App\Models\Jasa');
+        return $this->belongsTo('App\Models\Jasa', 'jasa_id');
     }
 }
