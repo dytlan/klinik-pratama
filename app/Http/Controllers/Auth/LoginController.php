@@ -39,7 +39,7 @@ class LoginController extends Controller
             case 'dokter':
                 return redirect('/dokter');
             case 'bidan' :
-                return redirect('/bidan');
+                return redirect('/dokter');
             case 'apoteker':
                 return redirect('/apoteker');    
             default:
