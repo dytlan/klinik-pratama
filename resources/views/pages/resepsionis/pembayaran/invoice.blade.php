@@ -16,20 +16,17 @@
                       <div class="col-md-6">
                         <address>
                           <strong>Nama:</strong><br>
-                          Sarah Smith<br>
+                          {{$regist->patient->nama}}<br>
                         </address>
                         <address>
                           <strong>ID Pasien:</strong><br>
-                          1<br>
+                          {{$regist->patient->id}}<br>
                         </address>
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
                           <strong>Jenis Pelayanan:</strong><br>
-                          Keith Johnson<br>
-                          197 N 2000th E<br>
-                          Rexburg, ID,<br>
-                          Springfield Center, USA
+                          {{$regist->schedule->pelayanan->nama}}<br>
                         </address>
                       </div>
                     </div>
@@ -37,14 +34,13 @@
                       <div class="col-md-6">
                         <address>
                           <strong>Tanggal Periksa:</strong><br>
-                          Visa ending **** 5687<br>
-                          test@example.com
+                          {{$regist->created_at->format('d-M-Y H:i:s')}}<br>
                         </address>
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
                           <strong>Dokter/Bidan:</strong><br>
-                          June 26, 2018<br><br>
+                          {{$regist->schedule->user->nama}}<br><br>
                         </address>
                       </div>
                     </div>

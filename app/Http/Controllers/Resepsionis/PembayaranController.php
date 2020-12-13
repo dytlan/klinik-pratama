@@ -39,7 +39,11 @@ class PembayaranController extends Controller
             return $item;
         });
 
-        return view('pages.resepsionis.pembayaran.invoice');
+        return view('pages.resepsionis.pembayaran.invoice', [
+            'regist'    => $regist,
+            'medicines' => $mappingMedicine,
+            'services'  => $mappingService
+        ]);
     }
 
     /**

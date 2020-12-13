@@ -11,7 +11,7 @@ class TransaksiObat extends Model
     protected $fillable = ['obat_id', 'quantity', 'register_pelayanan_id', 'apoteker_id'];
 
     public function medicine(){
-        return $this->belongsTo('App\Models\Obat');
+        return $this->belongsTo('App\Models\Obat', 'obat_id');
     }
 
     public function user(){
