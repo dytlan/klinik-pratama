@@ -8,7 +8,7 @@
                 <a href="{{ route('pasien.create') }}" class="btn btn-primary btn-sm shadow-sm btn-icon icon-left mb-2"><i class="fas fa-plus"></i>Registrasi Pasien Baru</a>
                 <div class="card">
                   <div class="card-header">
-                    <h4>Daftar Users</h4>
+                    <h4>Daftar Pasien</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">

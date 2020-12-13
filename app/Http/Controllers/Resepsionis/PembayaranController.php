@@ -41,14 +41,14 @@ class PembayaranController extends Controller
 
         $subTotal = 0;
 
-        foreach($mappingService as $data){
+        foreach ($mappingService as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
 
-        foreach($mappingMedicine as $data){
+        foreach ($mappingMedicine as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
-    
+
         return view('pages.resepsionis.pembayaran.invoice', [
             'regist'        => $regist,
             'services'      => $mappingService,
@@ -65,12 +65,14 @@ class PembayaranController extends Controller
      */
     public function store(Request $request, $registerPelayananId)
     {
-        if ($request->payment == 1) {
-            $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
-            $regist->update([
-                'status' => 'selesai'
-            ]);
-        }
+
+        $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+        $regist->update([
+            'status' => 'selesai'
+        ]);
+
+
+        return redirect()->route('pembayaran.antrian')->with('toast_success', 'Pembayaran Berhasil');
     }
 
     /**

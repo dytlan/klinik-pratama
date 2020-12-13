@@ -101,13 +101,12 @@
                 </div>
               </div>
               <hr>
-              <div class="text-md-right">
-                <div class="float-lg-left mb-lg-0 mb-3">
-                  <a onclick="return confirm('Apakah anda yakin?')" href="{{ route('pembayaran.confirm',$regist->id) }}" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
+              <div class="row">
+                <div class="col-12">
+                   <a onclick="return confirm('Apakah anda yakin?')" href="{{ route('pembayaran.confirm',$regist->id) }}" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
                     Payment</a>
                   <a href="{{ route('pembayaran.antrian') }}" class="btn btn-danger text-white btn-icon icon-left"><i class="fas fa-times"></i> Cancel</a>
                 </div>
-                {{-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> --}}
               </div>
             </div>
           </div>

@@ -46,6 +46,9 @@
             <li class="dropdown {{(request()->is('resepsionis/pembayaran*')) ? 'active' : ""}}">
               <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-money-bill"></i><span>Pembayaran</span></a>
             </li>
+            <li class="dropdown {{(request()->is('resepsionis/transaksi*')) ? 'active' : ""}}">
+              <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-check"></i><span>Transaksi Selesai</span></a>
+            </li>
           
             {{-- <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
@@ -73,7 +76,7 @@
               <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-users"></i><span>Periksa Pasien</span></a>
             </li>
             <li class="dropdown {{(request()->is('dokte')) ? 'active' : ""}}">
-              <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-users"></i><span>Data Rekam Medis</span></a>
+              <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-file-medical-alt"></i><span>Data Rekam Medis</span></a>
             </li>
           
             {{-- <li class="dropdown">

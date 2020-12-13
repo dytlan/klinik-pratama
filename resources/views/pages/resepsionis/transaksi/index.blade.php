@@ -1,32 +1,31 @@
 @extends('layouts.main')
-@section('title','Registrasi Pelayanan')
+@section('title','Transaksi Selesai')
 @section('content')
        <section class="section">
           <div class="section-body">
               <div class="row mb-4">
                   <div class="col-12">
-                      <h5>Registrasi {{ $registrations->nama }}</h5>
+                      <h5>Transaksi Selesai</h5>
                   </div>
               </div>
             <div class="row">
               <div class="col-12">
-                <a href="{{ route('register.pelayanan.create',$registrations->id) }}" class="btn btn-primary mb-4 btn-sm shadow-sm btn-icon icon-left mb-2"><i class="fas fa-plus"></i>Registrasi</a>
                 <div class="card">
                   <div class="card-header">
-                    <h4>Daftar Pasien {{ $registrations->nama }}</h4>
+                    <h4>Daftar Semua Transaksi Yang Sudah Selesai/h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-striped table-hover" id="tableRegistrasi" style="width:100%;">
+                      <table class="table table-striped table-hover" id="tableTransaksi" style="width:100%;">
                         <thead>
                           <tr class="text-center">
                      
-                            <th>ID Pasien</th>
+                            <th>#</th>
+                            <th>ID Transaksi</th>
                             <th>Nama Pasien</th>
-                            <th>Antrian</th>
+                            <th>Jenis Pelayanan</th>
                             <th>Dokter/Bidan</th>
-                            <th>Status</th>
-                            <th>Tanggal Registrasi</th>
+                            <th>Tanggal Transaksi</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -34,23 +33,19 @@
                         @foreach ($registrations->registrations as $regist)
                         <tr class="text-center">
                       
-                            <td>{{ $regist->patient_id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ ucwords($regist->patient->nama) }}</td>
                             <td>{{ $regist->kode.'-'.$regist->antrian }}</td>
                             <td>{{ $regist->schedule->user->nama }}</td>
                             <td>{{ ucwords($regist->status) }}</td>
                             <td>{{ $regist->created_at->format('d-m-Y')}}</td>
                             <td>
-                            {{-- <div class="d-flex pl-2">
-                                <a href="{{ route('user.edit',$user->id) }}" class="btn btn-warning btn-sm btn-icon mr-2">
-                                    <i class="fas fa-pencil-alt"></i>
+                            <div class="d-flex pl-2">
+                                <a href="#" class="btn btn-warning btn-sm icon-left btn-icon mr-2">
+                                    <i class="fas fa-file-invoice"></i> Lihat Invoice
                                 </a>
-                              <form action="{{ route('user.destroy',$user->id) }}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger btn-sm btn-icon"><i class="fas fa-trash"></i></button>
-                            </form>
-                            </div> --}}
+                            
+                            </div>
                             </td>
                         </tr>
                         @endforeach
@@ -80,8 +75,8 @@
   <script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 
   <script>
-    $('#tableRegistrasi').DataTable({
-         "order":[]
+    $('#tableTransaksi').DataTable({
+    
     });
   </script>
 @endpush
