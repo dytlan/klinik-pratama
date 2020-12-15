@@ -23,6 +23,7 @@ class RekamMedisController extends Controller
     public function index()
     {
         $records = RekamMedis::orderByDesc('created_at')->get();
+        return view('pages.dokter.rekam-medis.index', compact('records'));
     }
 
     /**
@@ -71,7 +72,7 @@ class RekamMedisController extends Controller
             'register_pelayanan_id' => $registAntrian->id
         ]);
 
-        foreach($request->jasa as $jasa){
+        foreach ($request->jasa as $jasa) {
             $registAntrian->services()->create([
                 'jasa_id' => $jasa
             ]);
