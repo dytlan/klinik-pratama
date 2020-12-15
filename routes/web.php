@@ -37,9 +37,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'isAdmin'], 'namesp
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsionis'], 'namespace' => 'Resepsionis'], function () {
-    Route::get('/', function () {
-        return view('pages.resepsionis.dashboard');
-    })->name('resepsionis');
+    Route::get('/', 'DashboardController@index')->name('resepsionis');
 
     Route::resource('/registrasi/pelayanan', 'PelayananController')->only('index', 'show');
     Route::post('/registrasi/pelayanan/{pelayanan}/pasien', 'RegisterPelayananController@checkPatient')->name('check.patient');
