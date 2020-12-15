@@ -12,7 +12,7 @@
                     <div class="padding-20">
                       <div class="text-right">
                         <h3 class="font-light mb-0">
-                          <i class="ti-arrow-up text-success"></i> 524
+                          <i class="ti-arrow-up text-success"></i> {{$resepsionis}}
                         </h3>
                         <span class="text-muted">Resepsionis</span>
                       </div>
@@ -29,7 +29,7 @@
                     <div class="padding-20">
                       <div class="text-right">
                         <h3 class="font-light mb-0">
-                          <i class="ti-arrow-up text-success"></i> 158
+                          <i class="ti-arrow-up text-success"></i> {{$apoteker}}
                         </h3>
                         <span class="text-muted">Apoteker</span>
                       </div>
@@ -46,7 +46,7 @@
                     <div class="padding-20">
                       <div class="text-right">
                         <h3 class="font-light mb-0">
-                          <i class="ti-arrow-up text-success"></i> 785
+                          <i class="ti-arrow-up text-success"></i> {{$dokter}}
                         </h3>
                         <span class="text-muted">Dokter</span>
                       </div>

@@ -116,4 +116,24 @@ class UserController extends Controller
         User::destroy($id);
         return redirect()->route('user.index')->with('toast_success', 'Data Berhasil Dihapus');
     }
+
+    public function dashboard(){
+        $resepsionis = User::whereHas('role', function($query){
+            $query->where('nama', 'resepsionis');
+        })->count();
+
+        $apoteker = User::whereHas('role', function($query){
+            $query->where('nama', 'apoteker');
+        })->count();
+
+        $dokter = User::whereHas('role', function($query){
+            $query->where('nama', 'dokter');
+        })->count();
+
+        $bidan = User::whereHas('role', function($query){
+            $query->where('nama', 'bidan');
+        })->count();
+        
+        return view('pages.admin.dashboard', compact('resepsionis', 'apoteker', 'dokter', 'bidan'));
+    }
 }
