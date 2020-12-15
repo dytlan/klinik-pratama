@@ -39,15 +39,13 @@ class PembayaranController extends Controller
                 $subTotal = $subTotal + $service->total_harga;
             }
 
-            $item->nama_pasien = $item->patient->name;
+            $item->nama_pasien = $item->patient->nama;
             $item->jenis_pelayanan = $item->schedule->pelayanan->nama;
             $item->nama_dokter = $item->schedule->user->nama;
             $item->sub_total = $subTotal;
 
             return $item;
         });
-
-        // dd($registers);
 
         return view('pages.resepsionis.transaksi.index', compact('registers'));
     }
