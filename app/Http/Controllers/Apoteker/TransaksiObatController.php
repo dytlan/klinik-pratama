@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Apoteker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Obat;
 use App\Models\RegisterPelayanan;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
@@ -42,10 +43,15 @@ class TransaksiObatController extends Controller
     {
         $register = RegisterPelayanan::FindOrFail($registerPelayananId);
         foreach($request->medicines as $medicine){
-            $register->transactions()->create([
+            $data = $register->transactions()->create([
                 'obat_id'       => $medicine['obat_id'],
                 'quantity'      => $medicine['quantity'],
                 'apoteker_id'   => $request->user_id
+            ]);
+
+            $obat = Obat::FindOrFail($data->obat_id);
+            $obat->update([
+                'jumlah' => $obat->jumlah - $data->quantity
             ]);
         }
 
