@@ -71,11 +71,11 @@ Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter'], 'name
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => '/bidan', 'middleware' => ['auth', 'isBidan']], function () {
-    Route::get('/', function () {
-        return view('pages.bidan.dashboard');
-    })->name('bidan');
-});
+// Route::group(['prefix' => '/bidan', 'middleware' => ['auth', 'isBidan']], function () {
+//     Route::get('/', function () {
+//         return view('pages.bidan.dashboard');
+//     })->name('bidan');
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +83,7 @@ Route::group(['prefix' => '/bidan', 'middleware' => ['auth', 'isBidan']], functi
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => '/apoteker', 'middleware' => ['auth', 'isApoteker'], 'namespace' => 'Apoteker'], function () {
-    Route::get('/', function () {
-        return view('pages.apoteker.dashboard');
-    })->name('apoteker');
+    Route::get('/', 'DashboardController@index')->name('apoteker');
     Route::get('/permintaan-resep', 'AntrianController@antrian')->name('permintaan-resep');
     Route::get('/transaksi/obat/{pelayanan}', 'TransaksiObatController@create')->name('transaksi.obat.pasien');
     Route::resource('/obat/kategori', 'KategoriObatController');
