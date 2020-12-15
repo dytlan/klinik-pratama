@@ -118,31 +118,34 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('toast_success', 'Data Berhasil Dihapus');
     }
 
-    public function dashboard(){
-        $resepsionis = User::whereHas('role', function($query){
+    public function dashboard()
+    {
+        $resepsionis = User::whereHas('role', function ($query) {
             $query->where('nama', 'resepsionis');
         })->count();
 
-        $apoteker = User::whereHas('role', function($query){
+        $apoteker = User::whereHas('role', function ($query) {
             $query->where('nama', 'apoteker');
         })->count();
 
-        $dokter = User::whereHas('role', function($query){
+        $dokter = User::whereHas('role', function ($query) {
             $query->where('nama', 'dokter');
         })->count();
 
-        $bidan = User::whereHas('role', function($query){
+        $bidan = User::whereHas('role', function ($query) {
             $query->where('nama', 'bidan');
         })->count();
-        
+
         return view('pages.admin.dashboard', compact('resepsionis', 'apoteker', 'dokter', 'bidan'));
     }
 
-    public function editPassword(){
-        
+    public function editPassword()
+    {
+        return view('pages.change-password');
     }
 
-    public function changePassword(Request $request){
+    public function changePassword(Request $request)
+    {
         $user = User::FindOrFail(Auth::id());
 
         $request->validate([
@@ -162,5 +165,7 @@ class UserController extends Controller
         $user->update([
             'password' => $hashedPassword,
         ]);
+
+        return redirect()->back()->with('toast_success', 'Password berhasil di ubah');
     }
 }
