@@ -12,7 +12,7 @@
                     <div class="padding-20">
                       <div class="text-right">
                         <h3 class="font-light mb-0">
-                          <i class="ti-arrow-up text-success"></i> 524
+                          <i class="ti-arrow-up text-success"></i> {{ $total }}
                         </h3>
                         <span class="text-muted">Total Permintaan Resep Hari Ini</span>
                       </div>
@@ -29,7 +29,7 @@
                     <div class="padding-20">
                       <div class="text-right">
                         <h3 class="font-light mb-0">
-                          <i class="ti-arrow-up text-success"></i> 158
+                          <i class="ti-arrow-up text-success"></i> {{ $obat }}
                         </h3>
                         <span class="text-muted">Total Obat Hampir Habis</span>
                       </div>

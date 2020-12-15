@@ -39,7 +39,7 @@
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">{{ Auth::user()->nama }}</div>
               <a href="profile.html" class="dropdown-item has-icon"> 
-                <i class="far fa-user"></i> Profile
+                <i class="fas fa-key"></i> Ganti Password
               </a> 
               <div class="dropdown-divider"></div>
               <form action="{{ route('logout') }}" method="POST">
