@@ -89,12 +89,19 @@
                 
                  <div class="row">
                     <div class="col-6">
-                        <div class="form-group">
+                           <div class="form-group">
                             <label >Nama Ruangan</label>
-                            <input type="text" class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" required placeholder="Masukkan Nama Ruangan" value="{{ $schedule->ruangan}}">
+                            <select class="form-control @error('ruangan') is-invalid @enderror" name="ruangan" required>
+                                <option {{ $schedule->ruangan == "Ruang Pemeriksaan Dokter Umum" ? 'selected' :'' }} value="Ruang Pemeriksaan Dokter Umum">Ruang Pemeriksaan Dokter Umum</option>
+                                <option {{ $schedule->ruangan == "Ruang Pemeriksaan Dokter Gigi" ? 'selected' :''}} value="Ruang Pemeriksaan Dokter Gigi">Ruang Pemeriksaan Dokter Gigi</option>
+                                <option {{ $schedule->ruangan == "Ruang Tindakan" ? 'selected' :'' }} value="Ruang Tindakan">Ruang Tindakan</option>
+                                <option {{ $schedule->ruangan  == "Ruang Konsultasi" ? 'selected' :''}} value="Ruang Konsultasi">Ruang Konsultasi</option>
+                                <option {{ $schedule->ruangan  == "Ruang Pemeriksaan Bidan" ? 'selected' :'' }} value="Ruang Pemeriksaan Bidan">Ruang Pemeriksaan Bidan</option>
+                                <option {{ $schedule->ruangan  == "Ruang Bersalin" ? 'selected' :''  }} value="Ruang Bersalin">Ruang Bersalin</option>
+                            </select>
                             @error('ruangan')
                             <div class="invalid-feedback">
-                                {{ $message }}
+                                 Wajib Diisi
                             </div>
                             @enderror
                         </div>

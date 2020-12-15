@@ -1,8 +1,16 @@
 @extends('layouts.main')
-@section('title','Pembayaran')
+@section('title','Invoice Transaksi')
 @section('content')
      <section class="section">
           <div class="section-body">
+              <div class="row">
+                  <div class="col-12">
+                      <nav class="breadcrumb bg-transparent">
+                          <a class="breadcrumb-item" href="{{ route('transaksi.index') }}">Kembali</a>
+                          <span class="breadcrumb-item active">Invoice Pembayaran</span>
+                      </nav>
+                  </div>
+              </div>
             <div class="invoice">
               <div class="invoice-print">
                 <div class="row">
@@ -101,13 +109,7 @@
                 </div>
               </div>
               <hr>
-              <div class="row">
-                <div class="col-12">
-                   <a onclick="return confirm('Apakah anda yakin?')" href="{{ route('pembayaran.confirm',$regist->id) }}" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
-                    Payment</a>
-                  <a href="{{ route('pembayaran.antrian') }}" class="btn btn-danger text-white btn-icon icon-left"><i class="fas fa-times"></i> Cancel</a>
-                </div>
-              </div>
+      
             </div>
           </div>
         </section>

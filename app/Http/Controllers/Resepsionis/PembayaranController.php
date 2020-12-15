@@ -15,27 +15,27 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $registers = RegisterPelayanan::where('status', 'selesai')->orderBy('created_at','desc')->get();
+        $registers = RegisterPelayanan::where('status', 'selesai')->orderBy('created_at', 'desc')->get();
 
-        $mappingRegister = $registers->map(function($item){
+        $mappingRegister = $registers->map(function ($item) {
             $subTotal = 0;
-            $medicines = $item->transactions->map(function($item){
+            $medicines = $item->transactions->map(function ($item) {
                 $item->name = $item->medicine->nama;
                 $item->total_harga = $item->quantity * $item->medicine->harga;
                 return $item;
             });
 
-            $services = $item->services->map(function($item){
+            $services = $item->services->map(function ($item) {
                 $item->name = $item->service->nama;
                 $item->total_harga = $item->service->harga;
                 return $item;
             });
 
-            foreach($medicines as $medicine){
+            foreach ($medicines as $medicine) {
                 $subTotal = $subTotal + $medicine->total_harga;
             }
 
-            foreach($services as $service){
+            foreach ($services as $service) {
                 $subTotal = $subTotal + $service->total_harga;
             }
 
@@ -47,7 +47,7 @@ class PembayaranController extends Controller
             return $item;
         });
 
-        dd($mappingRegister);
+        return view('pages.resepsionis.transaksi.index', compact('registers'));
     }
 
     /**
@@ -73,14 +73,14 @@ class PembayaranController extends Controller
 
         $subTotal = 0;
 
-        foreach($mappingService as $data){
+        foreach ($mappingService as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
 
-        foreach($mappingMedicine as $data){
+        foreach ($mappingMedicine as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
-    
+
         return view('pages.resepsionis.pembayaran.invoice', [
             'regist'        => $regist,
             'services'      => $mappingService,
@@ -97,12 +97,14 @@ class PembayaranController extends Controller
      */
     public function store(Request $request, $registerPelayananId)
     {
-        if ($request->payment == 1) {
-            $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
-            $regist->update([
-                'status' => 'selesai'
-            ]);
-        }
+
+        $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+        $regist->update([
+            'status' => 'selesai'
+        ]);
+
+
+        return redirect()->route('pembayaran.antrian')->with('toast_success', 'Pembayaran Berhasil');
     }
 
     /**
@@ -129,13 +131,20 @@ class PembayaranController extends Controller
 
         $subTotal = 0;
 
-        foreach($mappingService as $data){
+        foreach ($mappingService as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
 
-        foreach($mappingMedicine as $data){
+        foreach ($mappingMedicine as $data) {
             $subTotal = $subTotal + $data->total_harga;
         }
+
+        return view('pages.resepsionis.transaksi.show', [
+            'regist'        => $regist,
+            'services'      => $mappingService,
+            'medicines'     => $mappingMedicine,
+            'subTotal'      => $subTotal
+        ]);
     }
 
     /**
