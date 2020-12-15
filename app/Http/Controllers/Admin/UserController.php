@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Role;
@@ -135,5 +136,27 @@ class UserController extends Controller
         })->count();
         
         return view('pages.admin.dashboard', compact('resepsionis', 'apoteker', 'dokter', 'bidan'));
+    }
+
+    public function changePassword(Request $request){
+        $user = User::FindOrFail(Auth::id());
+
+        $request->validate([
+            'old_password' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    $fail('Password lama yang anda masukkan salah.');
+                }
+            }],
+            'password' => 'required|min:8|confirmed',
+        ], [
+            'password.min' => 'Password minimal 8 karakter',
+            'password.confirmed' => 'Konfirmasi password berbeda'
+        ]);
+
+        $hashedPassword = Hash::make($request->password);
+
+        $user->update([
+            'password' => $hashedPassword,
+        ]);
     }
 }
