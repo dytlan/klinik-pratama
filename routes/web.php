@@ -57,9 +57,7 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => '/dokter', 'middleware' => ['auth', 'isDokter'], 'namespace' => 'Dokter'], function () {
-    Route::get('/', function () {
-        return view('pages.dokter.dashboard');
-    })->name('dokter');
+    Route::get('/', 'DashboardController@index')->name('dokter');
 
     Route::get('/antrian', 'AntrianController@antrian')->name('periksa-pasien');
     Route::get('/rekam-medis', 'RekamMedisController@index')->name('rekam.medis.index');
