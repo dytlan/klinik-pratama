@@ -51,7 +51,7 @@ class PembayaranController extends Controller
 
             return $item;
         });
-        
+
         return view('pages.resepsionis.transaksi.index', compact('registers'));
     }
 

@@ -75,8 +75,8 @@
             <li class="dropdown {{(request()->is('dokter/antrian*')) ? 'active' : ""}}">
               <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-users"></i><span>Periksa Pasien</span></a>
             </li>
-            <li class="dropdown {{(request()->is('dokte')) ? 'active' : ""}}">
-              <a href="{{ route('periksa-pasien') }}" class="nav-link "><i class="fas fa-file-medical-alt"></i><span>Data Rekam Medis</span></a>
+            <li class="dropdown {{(request()->is('dokter/rekam-medis*')) ? 'active' : ""}}">
+              <a href="{{ route('rekam.medis.index') }}" class="nav-link "><i class="fas fa-file-medical-alt"></i><span>Data Rekam Medis</span></a>
             </li>
           
             {{-- <li class="dropdown">

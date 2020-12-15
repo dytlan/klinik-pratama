@@ -33,6 +33,6 @@ class RekamMedis extends Model
 
     public function service()
     {
-        return $this->belongsTo('App\Models\Pelayanan');
+        return $this->belongsTo('App\Models\Pelayanan', 'pelayanan_id');
     }
 }

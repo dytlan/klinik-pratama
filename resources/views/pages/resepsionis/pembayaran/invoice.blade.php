@@ -75,7 +75,7 @@
                         <tr>
                           <th colspan="5" class="">Rincian Biaya Obat</th>
                         </tr>
-                       @foreach ($medicines as $medicine)
+                       @forelse ($medicines as $medicine)
                         <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $medicine->medicine->nama }}</td>
@@ -83,7 +83,11 @@
                           <td class="text-center">{{ $medicine->quantity }}</td>
                           <td class="text-right">RP. {{ number_format($medicine->total_harga) }}</td>
                         </tr>
-                       @endforeach
+                        @empty 
+                        <tr>
+                          <td class="text-center" colspan="5">Data kosong</td>
+                        </tr>
+                       @endforelse
                       </table>
                     </div>
                     <div class="row mt-4">
