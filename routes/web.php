@@ -19,7 +19,8 @@ Route::get('/', function () {
     return redirect()->route('admin');
 })->middleware(['auth', 'isAdmin']);
 
-Route::put('/user/update/password', 'UserController@changePassword')->name('change.password');
+Route::get('/user/change/password', 'UserController@editPassword')->middleware('auth')->name('edit.password');
+Route::put('/user/update/password', 'UserController@changePassword')->middleware('auth')->name('change.password');
 
 /*
 |--------------------------------------------------------------------------

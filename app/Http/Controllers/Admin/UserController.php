@@ -138,6 +138,10 @@ class UserController extends Controller
         return view('pages.admin.dashboard', compact('resepsionis', 'apoteker', 'dokter', 'bidan'));
     }
 
+    public function editPassword(){
+        
+    }
+
     public function changePassword(Request $request){
         $user = User::FindOrFail(Auth::id());
 
