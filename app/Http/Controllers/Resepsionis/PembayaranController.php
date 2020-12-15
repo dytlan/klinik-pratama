@@ -27,22 +27,27 @@ class PembayaranController extends Controller
 
             $services = $item->services->map(function ($item) {
                 $item->name = $item->service->nama;
-                $item->total_harga = $item->service->harga;
+                $item->total_harga = $item->service->biaya;
+
                 return $item;
             });
-
-            foreach ($medicines as $medicine) {
-                $subTotal = $subTotal + $medicine->total_harga;
-            }
-
+            
             foreach ($services as $service) {
                 $subTotal = $subTotal + $service->total_harga;
             }
+
+           foreach ($medicines as $medicine) {
+                    $subTotal = $subTotal + $medicine->total_harga;
+            }
+    
+            
 
             $item->nama_pasien = $item->patient->nama;
             $item->jenis_pelayanan = $item->schedule->pelayanan->nama;
             $item->nama_dokter = $item->schedule->user->nama;
             $item->sub_total = $subTotal;
+            $item->services = $services;
+            $item->medicines = $medicines;
 
             return $item;
         });
