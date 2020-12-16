@@ -19,6 +19,7 @@
                     <th>Nama</th>
                     <th>Kategori</th>
                     <th>Kandungan</th>
+                    <th>Satuan</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
                     <th>Action</th>
@@ -30,9 +31,10 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ ucwords($medicine->nama) }}</td>
                     <td>{{ $medicine->kandungan }}</td>
+                    <td>{{ $medicine->satuan }}</td>
                     <td>{{ $medicine->category->kategori }}</td>
                     <td>{{ $medicine->jumlah }}</td>
-                    <td>{{ $medicine->harga }}</td>
+                    <td>Rp. {{ number_format($medicine->harga) }}</td>
                     <td>
                     <div class="d-flex pl-2">
                         <a href="{{ route('data-obat.edit',$medicine->id) }}" class="btn btn-warning btn-sm btn-icon mr-2">

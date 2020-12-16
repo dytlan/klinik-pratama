@@ -39,12 +39,14 @@ class ObatController extends Controller
      */
     public function store(ObatValidation $request)
     {
+
         $request->validated();
 
         Obat::create([
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
             'kategori_obat_id'  => $request->kategori_obat_id,
+            'satuan'            => $request->satuan,
             'harga'             => $request->harga,
             'jumlah'            => $request->jumlah,
         ]);
@@ -72,6 +74,8 @@ class ObatController extends Controller
     public function edit($id)
     {
         $medicine = Obat::FindOrFail($id);
+        $categories = KategoriObat::All();
+        return view('pages.apoteker.data-obat.edit', compact('medicine', 'categories'));
     }
 
     /**
@@ -89,9 +93,12 @@ class ObatController extends Controller
             'nama'              => $request->nama,
             'kandungan'         => $request->kandungan,
             'kategori_obat_id'  => $request->kategori_obat_id,
+            'satuan'  => $request->satuan,
             'harga'             => $request->harga,
             'jumlah'            => $request->jumlah,
         ]);
+
+        return redirect()->route('data-obat.index')->with('toast_success', 'Data berhasil diubah');
     }
 
     /**
@@ -103,6 +110,7 @@ class ObatController extends Controller
     public function destroy($id)
     {
         Obat::destroy($id);
+        return redirect()->route('data-obat.index')->with('toast_success', 'Data berhasil dihapus');
     }
 
     public function fetch()
