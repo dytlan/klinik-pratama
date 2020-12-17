@@ -41,16 +41,13 @@
                             <td>{{ ucwords($regist->status) }}</td>
                             <td>{{ $regist->created_at->format('d-m-Y')}}</td>
                             <td>
-                            {{-- <div class="d-flex pl-2">
-                                <a href="{{ route('user.edit',$user->id) }}" class="btn btn-warning btn-sm btn-icon mr-2">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                              <form action="{{ route('user.destroy',$user->id) }}" method="post">
+                            <div class="d-flex pl-2">
+                              <form action="{{ route('register.pelayanan.delete',$regist->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" onclick="return confirm('Apakah anda yakin?')" class="btn btn-danger btn-sm btn-icon"><i class="fas fa-trash"></i></button>
                             </form>
-                            </div> --}}
+                            </div>
                             </td>
                         </tr>
                         @endforeach

@@ -10,12 +10,14 @@ use App\Models\RegisterPelayanan;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-        $registNow = RegisterPelayanan::where('created_at', 'like', now()->toDateString(). '%')->count();
-        $complete = RegisterPelayanan::count();
-         
+        $registNow = RegisterPelayanan::where('created_at', 'like', now()->toDateString() . '%')->count();
+        $patient = Patient::count();
+        $complete = RegisterPelayanan::where('status', 'selesai')->count();
 
-        return view('pages.resepsionis.dashboard', compact('registNow', 'complete'));
+
+        return view('pages.resepsionis.dashboard', compact('registNow', 'complete', 'patient'));
     }
 }

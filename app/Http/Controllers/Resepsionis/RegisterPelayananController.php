@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Pelayanan;
 use App\Models\Patient;
+use App\Models\RegisterPelayanan;
 
 class RegisterPelayananController extends Controller
 {
@@ -127,6 +128,9 @@ class RegisterPelayananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = RegisterPelayanan::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back()->with('toast_success', 'Data berhasil dihapus');
     }
 }
