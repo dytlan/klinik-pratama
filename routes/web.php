@@ -64,9 +64,11 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
 */
 Route::group(['prefix' => '/keuangan', 'middleware' => ['auth', 'isKeuangan'], 'namespace' => 'Keuangan'], function () {
     Route::get('/pembayaran', 'AntrianController@antrian')->name('keuangan.pembayaran.antrian');
-    Route::get('/transaksi', 'PembayaranController@index')->name('transaksi.index');
-    Route::get('/transaksi/{pelayanan}', 'PembayaranController@show')->name('transaksi.show');
-    Route::get('/transaksi/{pelayanan}/print', 'PembayaranController@printPDF')->name('transaksi.pdf');
+    Route::get('/pembayaran/{pelayanan}', 'PembayaranController@create')->name('keuangan.pembayaran.invoice');
+    Route::get('/pembayaran-confirm/{pelayanan}', 'PembayaranController@store')->name('keuangan.pembayaran.confirm');
+    Route::get('/transaksi', 'PembayaranController@index')->name('keuangan.transaksi.index');
+    Route::get('/transaksi/{pelayanan}', 'PembayaranController@show')->name('keuangan.transaksi.show');
+    Route::get('/transaksi/{pelayanan}/print', 'PembayaranController@printPDF')->name('keuangan.transaksi.pdf');
 });
 
 /*

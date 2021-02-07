@@ -33,16 +33,16 @@ class PembayaranController extends Controller
 
                 return $item;
             });
-            
+
             foreach ($services as $service) {
                 $subTotal = $subTotal + $service->total_harga;
             }
 
-           foreach ($medicines as $medicine) {
-                    $subTotal = $subTotal + $medicine->total_harga;
+            foreach ($medicines as $medicine) {
+                $subTotal = $subTotal + $medicine->total_harga;
             }
-    
-            
+
+
 
             $item->nama_pasien = $item->patient->nama;
             $item->jenis_pelayanan = $item->schedule->pelayanan->nama;
@@ -111,7 +111,7 @@ class PembayaranController extends Controller
         ]);
 
 
-        return redirect()->route('pembayaran.antrian')->with('toast_success', 'Pembayaran Berhasil');
+        return redirect()->route('keuangan.pembayaran.antrian')->with('toast_success', 'Pembayaran Berhasil');
     }
 
     /**
@@ -188,7 +188,8 @@ class PembayaranController extends Controller
         //
     }
 
-    public function printPDF($registerPelayananId){
+    public function printPDF($registerPelayananId)
+    {
         $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
 
         $medicines = $regist->transactions()->get();
@@ -222,7 +223,5 @@ class PembayaranController extends Controller
 
         $pdf = PDF::loadView('pages.keuangan.transaksi.print-out', $data);
         return $pdf->stream();
-
-        
     }
 }

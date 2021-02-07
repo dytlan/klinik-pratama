@@ -43,12 +43,12 @@
             <li class="dropdown {{(request()->is('resepsionis/registrasi/pelayanan*')) ? 'active' : ""}}">
               <a href="{{ route('pelayanan.index') }}" class="nav-link "><i class="fas fa-hand-holding-heart"></i><span>Registrasi Pelayanan</span></a>
             </li>
-            <li class="dropdown {{(request()->is('resepsionis/pembayaran*')) ? 'active' : ""}}">
+            {{-- <li class="dropdown {{(request()->is('resepsionis/pembayaran*')) ? 'active' : ""}}">
               <a href="{{ route('pembayaran.antrian') }}" class="nav-link "><i class="fas fa-money-bill"></i><span>Pembayaran</span></a>
             </li>
             <li class="dropdown {{(request()->is('resepsionis/transaksi*')) ? 'active' : ""}}">
               <a href="{{ route('transaksi.index') }}" class="nav-link "><i class="fas fa-check"></i><span>Transaksi Selesai</span></a>
-            </li>
+            </li> --}}
             <li class="dropdown {{(request()->is('resepsionis/rekam-medis*')) ? 'active' : ""}}">
               <a href="{{ route('rekam.medis.resepsionis') }}" class="nav-link "><i class="fas fa-file-medical-alt"></i><span>Data Rekam Medis</span></a>
             </li>
@@ -125,6 +125,28 @@
          
           </ul>
        </aside>
+
+     @elseif(Auth::user()->role->nama === 'keuangan')
+         <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{{ route('keuangan.pembayaran.antrian') }}"><span>KEUANGAN</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+          
+            <li class="dropdown {{(request()->is('keuangan/pembayaran*')) ? 'active' : ""}}">
+              <a href="{{ route('keuangan.pembayaran.antrian') }}" class="nav-link "><i class="fas fa-money-bill"></i><span>Pembayaran</span></a>
+            </li>
+            <li class="dropdown {{(request()->is('keuangan/transaksi*')) ? 'active' : ""}}">
+              <a href="{{ route('keuangan.transaksi.index') }}" class="nav-link "><i class="fas fa-check"></i><span>Transaksi Selesai</span></a>
+            </li>
+      
+        
+           
+         
+          </ul>
+       </aside>
+       
 
    
       @endif

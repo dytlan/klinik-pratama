@@ -24,28 +24,30 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if($user->role->nama == 'admin'){
+        if ($user->role->nama == 'admin') {
             return redirect('/admin');
-        } else if ($user->role->nama == 'resepsionis'){
+        } else if ($user->role->nama == 'resepsionis') {
             return redirect('/resepsionis');
         } else
 
-        switch ($user->role->nama) {
-            case 'admin':
-                return redirect('/admin');
-                break;
-            case 'resepsionis':
-                return redirect('/resepsionis');
-            case 'dokter':
-                return redirect('/dokter');
-            case 'bidan' :
-                return redirect('/dokter');
-            case 'apoteker':
-                return redirect('/apoteker');    
-            default:
-                return redirect()->back();
-                break;
-        }
+            switch ($user->role->nama) {
+                case 'admin':
+                    return redirect('/admin');
+                    break;
+                case 'resepsionis':
+                    return redirect('/resepsionis');
+                case 'dokter':
+                    return redirect('/dokter');
+                case 'bidan':
+                    return redirect('/dokter');
+                case 'apoteker':
+                    return redirect('/apoteker');
+                case 'keuangan':
+                    return redirect('/keuangan/pembayaran');
+                default:
+                    return redirect()->back();
+                    break;
+            }
     }
 
     /**
