@@ -18,7 +18,7 @@ class isKeuanganMiddleware
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        if($user->role->nama == 'admin' || $user->role->nama == 'resepsionis'){
+        if($user->role->nama == 'admin' || $user->role->nama == 'keuangan'){
             return $next($request);
         }
         return redirect()->back()->with('error', 'Not Authorized.');
