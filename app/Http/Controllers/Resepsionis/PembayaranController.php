@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\RegisterPelayanan;
 use Illuminate\Http\Request;
 
+use PDF;
+
 class PembayaranController extends Controller
 {
     /**
@@ -184,5 +186,43 @@ class PembayaranController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function printPDF($registerPelayananId){
+        $regist = RegisterPelayanan::FindOrFail($registerPelayananId);
+
+        $medicines = $regist->transactions()->get();
+        $mappingMedicine = $medicines->map(function ($item) {
+            $item->total_harga =  $item->quantity * $item->medicine->harga;
+            return $item;
+        });
+
+        $services = $regist->services()->get();
+        $mappingService = $services->map(function ($item) {
+            $item->total_harga = $item->service->biaya;
+            return $item;
+        });
+
+        $subTotal = 0;
+
+        foreach ($mappingService as $data) {
+            $subTotal = $subTotal + $data->total_harga;
+        }
+
+        foreach ($mappingMedicine as $data) {
+            $subTotal = $subTotal + $data->total_harga;
+        }
+
+        $data = [
+            'regist'        => $regist,
+            'services'      => $mappingService,
+            'medicines'     => $mappingMedicine,
+            'subTotal'      => $subTotal
+        ];
+
+        $pdf = PDF::loadView('pages.resepsionis.transaksi.print-out', $data);
+        return $pdf->stream();
+
+        
     }
 }

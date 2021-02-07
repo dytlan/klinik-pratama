@@ -46,7 +46,9 @@
                                 <a data-toggle="tooltip" data-original-title="Lihat Invoice" href="{{ route('transaksi.show',$register->id) }}" class="btn btn-primary btn-sm  btn-icon">
                                     <i class="fas fa-file-invoice"></i> 
                                 </a>
-                            
+                                <a data-toggle="tooltip" data-original-title="Print Invoice" href="{{ route('transaksi.pdf',$register->id) }}" class="btn btn-primary btn-sm  btn-icon">
+                                    <i class="fas fa-print"></i>
+                                </a>
                             </div>
                             </td>
                         </tr>

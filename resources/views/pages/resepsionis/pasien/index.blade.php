@@ -17,7 +17,7 @@
                           <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th>NIK</th>
+                            <th>No Medical Record</th>
                             <th>Jenis Kelamin</th>
                             <th>Nomor HP</th>
                             <th>Pekerjaan</th>

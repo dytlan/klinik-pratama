@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label for="">Tensi Darah</label>
                                 <div class="input-group mb-3">
-                                    <input type="number" name="tensi" min="0" max="300" class="form-control @error('tensi') is-invalid @enderror" required value="{{ old('tensi') }}">
+                                    <input type="text" name="tensi"  class="form-control @error('tensi') is-invalid @enderror" required value="{{ old('tensi') }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">mmHg</span>
                                     </div>

@@ -35,7 +35,7 @@
                    </div>
                    <div class="col-md-6">
                        <div class="form-group">
-                           <label>NIK</label>
+                           <label>No Medical Record</label>
                            <input type="number" class="form-control @error('nik') is-invalid @enderror" name="nik" required placeholder="Masukkan NIK" value="{{ old('nik') }}">
                             @error('nik')
                             <div class="invalid-feedback">

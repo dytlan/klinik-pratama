@@ -5,7 +5,7 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-md-8 offset-md-2">
-            <div class="card card-primary card-login">
+            <div class="card card-login" >
               <div class="card-header justify-content-center">
                   <div class="row">
                     <img src="{{ asset('assets/img/logo.jpeg') }}" width="180" height="180" alt="">

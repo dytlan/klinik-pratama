@@ -12,7 +12,7 @@
  
 </head>
 
-<body>
+<body style="background-color:#0278ae">
    <div class="loader"></div>
   <div id="app">
     @yield('content')

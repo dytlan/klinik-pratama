@@ -14,7 +14,7 @@
  
 </head>
 
-<body>
+<body style="background-color:#c8e6f5">
   <div class="loader"></div>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">

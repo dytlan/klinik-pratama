@@ -30,9 +30,9 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ ucwords($medicine->nama) }}</td>
+                    <td>{{ $medicine->category->kategori }}</td>
                     <td>{{ $medicine->kandungan }}</td>
                     <td>{{ $medicine->satuan }}</td>
-                    <td>{{ $medicine->category->kategori }}</td>
                     <td>{{ $medicine->jumlah }}</td>
                     <td>Rp. {{ number_format($medicine->harga) }}</td>
                     <td>
