@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 use App\Models\JadwalPraktek;
+use App\Models\RegisterPelayanan;
 
 class AntrianController extends Controller
 {
@@ -21,7 +23,6 @@ class AntrianController extends Controller
         if (!$schedule) {
             return redirect()->back()->with('toast_error', 'Tidak ada jadwal praktek di hari ini.');
         }
-
         $ongoingAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->where('status', 'dokter')->orderBy('antrian')->get();
 
         $doneAntrian = $schedule->registrations()->where('created_at', 'like', $date . '%')->whereIn('status', ['resepsionis', 'apoteker', 'selesai'])->orderBy('antrian')->get();

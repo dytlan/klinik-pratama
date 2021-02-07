@@ -59,6 +59,18 @@ Route::group(['prefix' => '/resepsionis', 'middleware' => ['auth', 'isResepsioni
 
 /*
 |--------------------------------------------------------------------------
+| Keuangan Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => '/keuangan', 'middleware' => ['auth', 'isKeuangan'], 'namespace' => 'Keuangan'], function () {
+    Route::get('/pembayaran', 'AntrianController@antrian')->name('keuangan.pembayaran.antrian');
+    Route::get('/transaksi', 'PembayaranController@index')->name('transaksi.index');
+    Route::get('/transaksi/{pelayanan}', 'PembayaranController@show')->name('transaksi.show');
+    Route::get('/transaksi/{pelayanan}/print', 'PembayaranController@printPDF')->name('transaksi.pdf');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Dokter Routes
 |--------------------------------------------------------------------------
 */
