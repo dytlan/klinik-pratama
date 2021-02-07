@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RekamMedisValidation;
-
+use App\Models\Obat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,12 +35,13 @@ class RekamMedisController extends Controller
     {
         $registerPelayanan = RegisterPelayanan::FindOrFail($registPelayananId);
         $patient = Patient::select('nama')->where('id', $registerPelayanan->patient_id)->first();
-        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->where('pelayanan_id', $registerPelayanan->pelayanan_id)->orderByDesc('created_at')->get();
+        $records = RekamMedis::where('patient_id', $registerPelayanan->patient_id)->orderByDesc('created_at')->get();
+        $medicines = Obat::with('category')->get();
 
         $service = Pelayanan::FindOrFail($registerPelayanan->pelayanan_id);
         $jasa = $service->costs()->get();
 
-        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan', 'jasa'));
+        return view('pages.dokter.periksa-pasien.create', compact('records', 'patient', 'registerPelayanan', 'jasa', 'medicines'));
     }
 
     /**

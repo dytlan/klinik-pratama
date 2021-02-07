@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="row">
+<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -42,6 +42,53 @@
                             <td>{{ $record->diagnosa }}</td>
                             <td>{{ $record->keluhan }}</td>
                             <td>{{ $record->created_at->format('d-m-Y')}}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4>List Obat</h4>
+            </div>
+            <div class="card-body">
+            <div id="accordion">
+                <div class="accordion">
+                    <div class="accordion-header" role="button" data-toggle="collapse" data-target="#data-obat">
+                        <h4>Lihat Data</h4>
+                    </div>
+                    <div class="accordion-body collapse" id="data-obat" data-parent="#accordion">
+                         <div class="table-responsive">
+                      <table class="table table-striped table-hover" id="tableObat" style="width:100%;">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Jumlah</th>
+                            <th>Satuan</th>
+                            <th>Kandungan</th>
+                            <th>Kategori</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($medicines as $medicine)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $medicine->nama }}</td>
+                            <td>{{ $medicine->jumlah }}</td>
+                            <td>{{ $medicine->satuan }}</td>
+                            <td>{{ $medicine->kandungan }}</td>
+                            <td>{{ $medicine->category->kategori }}</td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -230,6 +277,9 @@
 
   <script>
     $('#tableRecord').DataTable({
+       
+    });
+    $('#tableObat').DataTable({
        
     });
   </script>
